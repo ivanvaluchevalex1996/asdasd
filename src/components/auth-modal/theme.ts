@@ -63,7 +63,7 @@ export const ModalTitle = styled.h2`
   font-weight: 700;
 `;
 
-export const CloseButton = styled.button`
+export const ModalCloseButton = styled.button`
   position: absolute;
   top: 12px;
   right: 12px;
@@ -87,11 +87,11 @@ export const CloseButton = styled.button`
   }
 `;
 
-export const ButtonContainer = styled.div`
+export const ModalButtonContainer = styled.div`
   position: relative;
 `;
 
-export const Input = styled.input<{ error: string }>`
+export const ModalInput = styled.input<{ error: string }>`
   position: absolute;
   bottom: 74px;
   height: 46px;
@@ -109,7 +109,7 @@ export const Input = styled.input<{ error: string }>`
   }
 `;
 
-export const ErrorMessage = styled.p<{ $visible: boolean }>`
+export const ModalErrorMessage = styled.p<{ $visible: boolean }>`
   position: absolute;
   bottom: 55px;
   display: ${({ $visible }) => ($visible ? 'block' : 'none')};
@@ -118,7 +118,7 @@ export const ErrorMessage = styled.p<{ $visible: boolean }>`
   min-height: 0;
 `;
 
-export const StyledButton = styled(Button)`
+export const ModalSubmitButton = styled(Button)`
   margin-top: 24px;
   @media (min-width: ${BREAKPOINTS.tablet}) {
   }
