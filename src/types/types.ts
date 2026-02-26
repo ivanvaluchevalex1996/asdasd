@@ -1,3 +1,4 @@
+// тест
 export type TCountry = {
     country: string;
     iso: string;
