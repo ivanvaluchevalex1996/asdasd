@@ -8,6 +8,18 @@ const eslintConfig = defineConfig([
   {
     rules: {
       'react-hooks/set-state-in-effect': 'off',
+      semi: 'error',
+      'react-hooks/exhaustive-deps': ['error'],
+      '@typescript-eslint/explicit-module-boundary-types': 'off',
+      '@typescript-eslint/no-non-null-assertion': 'off',
+      '@typescript-eslint/no-namespace': 'off',
+      'react/react-in-jsx-scope': 'off',
+      '@typescript-eslint/no-explicit-any': 'warn',
+      '@typescript-eslint/no-unused-vars': ['error'],
+      'no-unused-vars': 'off',
+      'no-console': ['error', { allow: ['info', 'warn', 'error'] }],
+      '@typescript-eslint/no-var-requires': 'off',
+      eqeqeq: ['error', 'always'],
     },
   },
     globalIgnores([
