@@ -1,8 +1,8 @@
-import { useEffect, useState, useCallback, PropsWithChildren } from "react";
-import { useRouter } from "next/router";
-import { useLanguage } from "@/context/LanguageContext";
-import Header from "@/components/header";
-import AuthModal from "@/components/auth-modal";
+import { useEffect, useState, useCallback, PropsWithChildren } from 'react';
+import { useRouter } from 'next/router';
+import { useLanguage } from '@/context/LanguageContext';
+import Header from '@/components/header';
+import AuthModal from '@/components/auth-modal';
 
 const validateEmail = (email: string) => {
   const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
@@ -14,8 +14,8 @@ const Layout = ({ children }: PropsWithChildren) => {
   const { language } = useLanguage();
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [isClosing, setIsClosing] = useState(false);
-  const [email, setEmail] = useState("");
-  const [emailError, setEmailError] = useState("");
+  const [email, setEmail] = useState('');
+  const [emailError, setEmailError] = useState('');
   const [isLoggedIn, setIsLoggedIn] = useState(false);
 
   const handleEmailChange = useCallback(
@@ -25,12 +25,10 @@ const Layout = ({ children }: PropsWithChildren) => {
 
       if (value && !validateEmail(value)) {
         setEmailError(
-          language === "ru"
-            ? "Пожалуйста, введите корректный email"
-            : "Please enter a valid email"
+          language === 'ru' ? 'Пожалуйста, введите корректный email' : 'Please enter a valid email'
         );
       } else {
-        setEmailError("");
+        setEmailError('');
       }
     },
     [language]
@@ -41,37 +39,37 @@ const Layout = ({ children }: PropsWithChildren) => {
     setTimeout(() => {
       setIsModalOpen(false);
       setIsClosing(false);
-      setEmail("");
-      setEmailError("");
+      setEmail('');
+      setEmailError('');
     }, 300);
   }, []);
 
   const handleContinue = useCallback(() => {
     if (email && !emailError) {
-      localStorage.setItem("user", email);
+      localStorage.setItem('user', email);
       setIsLoggedIn(true);
       handleClose();
     }
   }, [email, emailError, handleClose]);
 
   const handleLogout = useCallback(() => {
-    localStorage.removeItem("user");
+    localStorage.removeItem('user');
     setIsLoggedIn(false);
     // Перенаправляем на главную страницу, если пользователь не на главной
-    if (router.pathname !== "/") {
-      router.push("/");
+    if (router.pathname !== '/') {
+      router.push('/');
     }
   }, [router]);
 
   const handleOpen = useCallback(() => {
     setIsModalOpen(true);
     setIsClosing(false);
-    setEmail("");
-    setEmailError("");
+    setEmail('');
+    setEmailError('');
   }, []);
 
   useEffect(() => {
-    const savedUser = localStorage.getItem("user");
+    const savedUser = localStorage.getItem('user');
     if (savedUser) {
       setIsLoggedIn(true);
     }

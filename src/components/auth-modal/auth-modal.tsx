@@ -1,5 +1,5 @@
-import { useLanguage } from "@/context/LanguageContext";
-import { getTranslation } from "@/lib/i18n";
+import { useLanguage } from '@/context/LanguageContext';
+import { getTranslation } from '@/lib/i18n';
 import {
   ModalOverlay,
   ModalContent,
@@ -9,7 +9,7 @@ import {
   Input,
   ErrorMessage,
   ContinueButton,
-} from "./theme";
+} from './theme';
 
 type TAuthModalProps = {
   email: string;
@@ -42,8 +42,8 @@ const AuthModal = ({
       >
         <CloseButton onClick={onClose}>&times;</CloseButton>
 
-        <ModalTitle>{getTranslation(language, "signInToContinue")}</ModalTitle>
-        <ModalSubtitle>{getTranslation(language, "enterEmail")}</ModalSubtitle>
+        <ModalTitle>{getTranslation(language, 'signInToContinue')}</ModalTitle>
+        <ModalSubtitle>{getTranslation(language, 'enterEmail')}</ModalSubtitle>
 
         <Input
           type="email"
@@ -57,7 +57,7 @@ const AuthModal = ({
         <ErrorMessage>{emailError}</ErrorMessage>
 
         <ContinueButton disabled={!email || !!emailError} onClick={onContinue}>
-          {getTranslation(language, "continue")}
+          {getTranslation(language, 'continue')}
         </ContinueButton>
       </ModalContent>
     </ModalOverlay>

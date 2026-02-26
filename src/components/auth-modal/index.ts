@@ -1,1 +1,1 @@
-export { default } from "./auth-modal";
+export { default } from './auth-modal';

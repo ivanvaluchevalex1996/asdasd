@@ -5,9 +5,9 @@ import styled from 'styled-components';
 import { COLORS } from '@/constants/COLORS';
 
 const Container = styled.div`
-  max-width: 1200px;
+  width: 100%;
   margin: 0 auto;
-  padding: 0 20px;
+  max-width: 1200px;
 `;
 
 const ErrorContainer = styled.div`
@@ -17,42 +17,60 @@ const ErrorContainer = styled.div`
   justify-content: center;
   min-height: 60vh;
   text-align: center;
-  padding: 40px 20px;
+  padding: 24px 0 40px;
 `;
 
 const ErrorCode = styled.h1`
-  font-size: 120px;
+  font-size: 80px;
   font-weight: bold;
   color: ${COLORS.PRIMARY_BUTTON};
   margin: 0;
   line-height: 1;
+
+  @media (min-width: 768px) {
+    font-size: 120px;
+  }
 `;
 
 const ErrorTitle = styled.h2`
-  font-size: 32px;
+  font-size: 22px;
   color: ${COLORS.TEXT_DARK};
-  margin: 20px 0 10px 0;
+  margin: 16px 0 8px 0;
   font-weight: 600;
+  line-height: 1.3;
+
+  @media (min-width: 768px) {
+    font-size: 32px;
+    margin: 20px 0 10px 0;
+  }
 `;
 
 const ErrorDescription = styled.p`
-  font-size: 18px;
+  font-size: 15px;
   color: ${COLORS.TEXT_MEDIUM};
-  margin: 0 0 30px 0;
+  margin: 0 0 24px 0;
   max-width: 500px;
+  line-height: 1.4;
+
+  @media (min-width: 768px) {
+    font-size: 18px;
+    margin: 0 0 30px 0;
+  }
 `;
 
 const ShowMoreButton = styled.button`
   display: block;
-  margin: 30px auto;
-  padding: 12px 30px;
+  margin: 0 auto;
+  padding: 12px 24px;
   background-color: ${COLORS.PRIMARY_BUTTON};
   color: ${COLORS.WHITE};
   border: none;
-  border-radius: 25px;
-  font-size: 1rem;
+  border-radius: 24px;
+  font-size: 15px;
   cursor: pointer;
   transition: background-color 0.3s;
+  width: 100%;
+  max-width: 280px;
 
   &:hover {
     background-color: ${COLORS.PRIMARY_BUTTON_HOVER};
@@ -61,6 +79,13 @@ const ShowMoreButton = styled.button`
   &:disabled {
     background-color: ${COLORS.DISABLED_COLOR};
     cursor: not-allowed;
+  }
+
+  @media (min-width: 768px) {
+    padding: 12px 30px;
+    font-size: 16px;
+    width: auto;
+    max-width: none;
   }
 `;
 

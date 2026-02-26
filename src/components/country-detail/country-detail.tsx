@@ -1,7 +1,8 @@
-import { TCountry } from "@/types/types";
-import { useLanguage } from "@/context/LanguageContext";
-import { getTranslation } from "@/lib/i18n";
-import { getFlagPath } from "@/lib/flags";
+import Image from 'next/image';
+import { TCountry } from '@/types/types';
+import { useLanguage } from '@/context/LanguageContext';
+import { getTranslation } from '@/lib/i18n';
+import { getFlagPath } from '@/lib/flags';
 import {
   Container,
   CountriesListContainer,
@@ -13,7 +14,7 @@ import {
   OperatorName,
   LoadingMessage,
   ErrorMessage,
-} from "./theme";
+} from './theme';
 
 type TCountryDetailProps = {
   country: TCountry | null;
@@ -27,7 +28,7 @@ const CountryDetail = ({ country, error, isLoading }: TCountryDetailProps) => {
   if (isLoading) {
     return (
       <Container>
-        <LoadingMessage>{getTranslation(language, "loadingCountries")}</LoadingMessage>
+        <LoadingMessage>{getTranslation(language, 'loadingCountries')}</LoadingMessage>
       </Container>
     );
   }
@@ -35,7 +36,7 @@ const CountryDetail = ({ country, error, isLoading }: TCountryDetailProps) => {
   if (error || !country) {
     return (
       <Container>
-        <ErrorMessage>{error || getTranslation(language, "countryNotFound")}</ErrorMessage>
+        <ErrorMessage>{error || getTranslation(language, 'countryNotFound')}</ErrorMessage>
       </Container>
     );
   }
@@ -45,14 +46,18 @@ const CountryDetail = ({ country, error, isLoading }: TCountryDetailProps) => {
   return (
     <Container>
       <CountriesListContainer>
-        <SectionTitle>{getTranslation(language, "countriesOperators")}</SectionTitle>
+        <SectionTitle>{getTranslation(language, 'countriesOperators')}</SectionTitle>
         <CountryCard>
           <CountryFlag>
-            <img
+            <Image
               src={flagPath}
               alt={country.country}
+              width={40}
+              height={30}
+              unoptimized
+              style={{ width: '100%', height: '100%', objectFit: 'cover', borderRadius: '4px' }}
               onError={(e) => {
-                e.currentTarget.style.display = "none";
+                e.currentTarget.style.display = 'none';
               }}
             />
           </CountryFlag>
@@ -61,7 +66,7 @@ const CountryDetail = ({ country, error, isLoading }: TCountryDetailProps) => {
             <OperatorsList>
               {country.operators.map((_, index) => (
                 <OperatorName key={index}>
-                  {getTranslation(language, "operator")} {index + 1}
+                  {getTranslation(language, 'operator')} {index + 1}
                 </OperatorName>
               ))}
             </OperatorsList>

@@ -1,1 +1,1 @@
-export { default } from "./countries-list";
+export { default } from './countries-list';

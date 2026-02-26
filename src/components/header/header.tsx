@@ -13,7 +13,7 @@ const Header = ({ isLoggedIn, onLogin, onLogout }: THeaderProps) => {
 
   return (
     <StyledBlock>
-      <div>logo</div>
+      <div>yesim</div>
       <HeaderControls>
         <LanguageSelect
           name="language"

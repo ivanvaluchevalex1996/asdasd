@@ -1,11 +1,11 @@
-import { useEffect, useState, useCallback, useMemo } from "react";
-import { useRouter } from "next/router";
-import { TCountry } from "@/types/types";
-import { useLanguage } from "@/context/LanguageContext";
-import CountriesList from "@/components/countries-list";
-import { COUNTRIES_PER_PAGE } from "@/constants/COUNTRIES_PER_PAGE";
-import { SEARCH_DEBOUNCE_MS } from "@/constants/TIMEOUTS";
-import { normalizeUrl } from "@/lib/url-utils";
+import { useEffect, useState, useCallback, useMemo } from 'react';
+import { useRouter } from 'next/router';
+import { TCountry } from '@/types/types';
+import { useLanguage } from '@/context/LanguageContext';
+import CountriesList from '@/components/countries-list';
+import { COUNTRIES_PER_PAGE } from '@/constants/COUNTRIES_PER_PAGE';
+import { SEARCH_DEBOUNCE_MS } from '@/constants/TIMEOUTS';
+import { normalizeUrl } from '@/lib/url-utils';
 
 type THomePageProps = {
   countriesEn: TCountry[];
@@ -16,18 +16,17 @@ type THomePageProps = {
 export default function HomePage({ countriesEn, countriesRu, hasError }: THomePageProps) {
   const { push } = useRouter();
   const { language } = useLanguage();
-  
+
   // Выбираем страны из статических данных в зависимости от языка
   // ВСЕ данные уже загружены через SSG - никаких клиентских запросов!
-  const countries = language === "ru" ? countriesRu : countriesEn;
+  const countries = language === 'ru' ? countriesRu : countriesEn;
   const isLoading = countries.length === 0 && !hasError;
   // провреь что лоадинг коректно работает и смотрится
   // const isLoading = countries.length !== 0;
-  
 
   const [displayedCount, setDisplayedCount] = useState(12);
-  const [searchQuery, setSearchQuery] = useState("");
-  const [debouncedSearchQuery, setDebouncedSearchQuery] = useState("");
+  const [searchQuery, setSearchQuery] = useState('');
+  const [debouncedSearchQuery, setDebouncedSearchQuery] = useState('');
 
   // Дебаунс для поискового запроса
   useEffect(() => {
@@ -40,7 +39,6 @@ export default function HomePage({ countriesEn, countriesRu, hasError }: THomePa
     return () => clearTimeout(timer);
   }, [searchQuery]);
 
-
   // Фильтрация стран по поисковому запросу (используем debounced значение)
   // Поиск только по названию страны и ISO-коду согласно ТЗ
   const filteredCountries = useMemo(() => {
@@ -51,8 +49,7 @@ export default function HomePage({ countriesEn, countriesRu, hasError }: THomePa
     const query = debouncedSearchQuery.toLowerCase().trim();
     return countries.filter(
       (country) =>
-        country.country.toLowerCase().includes(query) ||
-        country.iso.toLowerCase().includes(query)
+        country.country.toLowerCase().includes(query) || country.iso.toLowerCase().includes(query)
     );
   }, [countries, debouncedSearchQuery]);
 
@@ -68,7 +65,7 @@ export default function HomePage({ countriesEn, countriesRu, hasError }: THomePa
 
   // Проверяем, есть ли результаты поиска
   const hasNoSearchResults = useMemo(() => {
-    return debouncedSearchQuery.trim() !== "" && filteredCountries.length === 0;
+    return debouncedSearchQuery.trim() !== '' && filteredCountries.length === 0;
   }, [debouncedSearchQuery, filteredCountries.length]);
 
   const handleShowMore = useCallback(() => {

@@ -1,7 +1,15 @@
-import { memo } from "react";
-import { CountryCard, CountryName, CountryPrice, CountryFlag, CountryInfo, ChevronIcon } from "./theme";
-import { TCountry } from "@/types/types";
-import { getFlagPath } from "@/lib/flags";
+import { memo } from 'react';
+import Image from 'next/image';
+import {
+  CountryCard,
+  CountryName,
+  CountryPrice,
+  CountryFlag,
+  CountryInfo,
+  ChevronIcon,
+} from './theme';
+import { TCountry } from '@/types/types';
+import { getFlagPath } from '@/lib/flags';
 
 type TCountryItemProps = {
   country: TCountry;
@@ -14,11 +22,15 @@ const CountryItem = memo(({ country, onClick }: TCountryItemProps) => {
   return (
     <CountryCard onClick={() => onClick(country)}>
       <CountryFlag>
-        <img
+        <Image
           src={flagPath}
           alt={country.country}
+          width={40}
+          height={30}
+          unoptimized
+          style={{ width: '100%', height: '100%', objectFit: 'cover', borderRadius: '4px' }}
           onError={(e) => {
-            e.currentTarget.style.display = "none";
+            e.currentTarget.style.display = 'none';
           }}
         />
       </CountryFlag>
@@ -33,6 +45,6 @@ const CountryItem = memo(({ country, onClick }: TCountryItemProps) => {
   );
 });
 
-CountryItem.displayName = "CountryItem";
+CountryItem.displayName = 'CountryItem';
 
 export default CountryItem;

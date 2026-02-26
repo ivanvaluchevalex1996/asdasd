@@ -1,8 +1,8 @@
-import { memo } from "react";
-import { TCountry } from "@/types/types";
-import CountryItem from "@/components/country-item";
-import { useLanguage } from "@/context/LanguageContext";
-import { getTranslation } from "@/lib/i18n";
+import { memo } from 'react';
+import { TCountry } from '@/types/types';
+import CountryItem from '@/components/country-item';
+import { useLanguage } from '@/context/LanguageContext';
+import { getTranslation } from '@/lib/i18n';
 import {
   Container,
   CountriesListContainer,
@@ -12,7 +12,7 @@ import {
   Title,
   LoadingText,
   ErrorMessage,
-} from "./theme";
+} from './theme';
 
 type TCountriesListProps = {
   displayedCountries: TCountry[];
@@ -42,49 +42,46 @@ const CountriesList = memo(
 
     if (hasError) {
       return (
-      
-       
-          <ErrorMessage>
-            {getTranslation(language, "errorLoadingCountries")}
-          </ErrorMessage>
-        
+        <Container>
+          <ErrorMessage>{getTranslation(language, 'errorLoadingCountries')}</ErrorMessage>
+        </Container>
       );
     }
 
     if (isLoading) {
       return (
-        <>
+        <Container>
           <SearchInput
             type="text"
-            placeholder={getTranslation(language, "searchPlaceholder")}
+            placeholder={getTranslation(language, 'searchPlaceholder')}
             value={searchQuery}
             onChange={(e) => onSearchChange(e.target.value)}
           />
-          <LoadingText>{getTranslation(language, "loadingCountries")}</LoadingText>
-        </>
+          <LoadingText>{getTranslation(language, 'loadingCountries')}</LoadingText>
+        </Container>
       );
     }
 
     if (hasNoSearchResults) {
       return (
-        <>
+        <Container>
           <SearchInput
             type="text"
-            placeholder={getTranslation(language, "searchPlaceholder")}
+            placeholder={getTranslation(language, 'searchPlaceholder')}
             value={searchQuery}
             onChange={(e) => onSearchChange(e.target.value)}
           />
-          <LoadingText>{getTranslation(language, "noSearchResults")}</LoadingText>
-        </>
+          <LoadingText>{getTranslation(language, 'noSearchResults')}</LoadingText>
+        </Container>
       );
     }
 
     return (
       <Container>
-        <Title>{getTranslation(language, "countriesForTravel")}</Title>
+        <Title>{getTranslation(language, 'countriesForTravel')}</Title>
         <SearchInput
           type="text"
-          placeholder={getTranslation(language, "searchPlaceholder")}
+          placeholder={getTranslation(language, 'searchPlaceholder')}
           value={searchQuery}
           onChange={(e) => onSearchChange(e.target.value)}
         />
@@ -92,18 +89,14 @@ const CountriesList = memo(
         <CountriesListContainer>
           <CountriesGrid>
             {displayedCountries.map((country) => (
-              <CountryItem
-                key={country.id}
-                country={country}
-                onClick={onCountryClick}
-              />
+              <CountryItem key={country.id} country={country} onClick={onCountryClick} />
             ))}
           </CountriesGrid>
         </CountriesListContainer>
 
         {hasMore && (
           <ShowMoreButton onClick={onShowMore}>
-            {getTranslation(language, "showAllCountries")}
+            {getTranslation(language, 'showAllCountries')}
           </ShowMoreButton>
         )}
       </Container>
@@ -111,6 +104,6 @@ const CountriesList = memo(
   }
 );
 
-CountriesList.displayName = "CountriesList";
+CountriesList.displayName = 'CountriesList';
 
 export default CountriesList;

@@ -1,5 +1,5 @@
-import styled, { keyframes } from "styled-components";
-import { COLORS } from "@/constants/COLORS";
+import styled, { keyframes } from 'styled-components';
+import { COLORS } from '@/constants/COLORS';
 
 // Анимация для появления модалки
 export const slideIn = keyframes`
@@ -43,25 +43,25 @@ export const ModalContent = styled.div<{ isClosing: boolean }>`
 `;
 
 export const ModalTitle = styled.h2`
-  margin: 0 0 0.5rem 0;
+  margin: 0 0 8px 0;
   color: ${COLORS.TEXT_DARK};
-  font-size: 1.5rem;
+  font-size: 24px;
   font-weight: 600;
 `;
 
 export const ModalSubtitle = styled.p`
-  margin: 0 0 1.5rem 0;
+  margin: 0 0 24px 0;
   color: ${COLORS.TEXT_MEDIUM};
-  font-size: 0.9rem;
+  font-size: 14px;
 `;
 
 export const CloseButton = styled.button`
   position: absolute;
-  top: 1rem;
-  right: 1rem;
+  top: 16px;
+  right: 16px;
   background: none;
   border: none;
-  font-size: 1.5rem;
+  font-size: 24px;
   cursor: pointer;
   color: ${COLORS.TEXT_LIGHT};
 
@@ -72,11 +72,11 @@ export const CloseButton = styled.button`
 
 export const Input = styled.input<{ error: string }>`
   width: 100%;
-  padding: 0.75rem 1rem;
+  padding: 12px 16px;
   border: 2px solid ${({ error }) => (error ? COLORS.ERROR_COLOR : COLORS.BORDER_COLOR)};
   border-radius: 10px;
-  font-size: 1rem;
-  margin-bottom: 0.5rem;
+  font-size: 16px;
+  margin-bottom: 8px;
   outline: none;
 
   &:focus {
@@ -86,24 +86,25 @@ export const Input = styled.input<{ error: string }>`
 
 export const ErrorMessage = styled.p`
   color: ${COLORS.ERROR_COLOR};
-  font-size: 0.85rem;
-  margin: 0 0 1rem 0;
-  min-height: 1.2rem;
+  font-size: 14px;
+  margin: 0 0 16px 0;
+  min-height: 19px;
 `;
 
 export const ContinueButton = styled.button<{ disabled: boolean }>`
   width: 100%;
-  padding: 0.75rem;
+  padding: 12px;
   background-color: ${({ disabled }) => (disabled ? COLORS.DISABLED_COLOR : COLORS.PRIMARY_BUTTON)};
   color: ${COLORS.WHITE};
   border: none;
   border-radius: 10px;
-  font-size: 1rem;
+  font-size: 16px;
   font-weight: 500;
-  cursor: ${({ disabled }) => (disabled ? "not-allowed" : "pointer")};
+  cursor: ${({ disabled }) => (disabled ? 'not-allowed' : 'pointer')};
   transition: background-color 0.3s;
 
   &:hover {
-    background-color: ${({ disabled }) => (disabled ? COLORS.DISABLED_COLOR : COLORS.PRIMARY_BUTTON_HOVER)};
+    background-color: ${({ disabled }) =>
+      disabled ? COLORS.DISABLED_COLOR : COLORS.PRIMARY_BUTTON_HOVER};
   }
 `;

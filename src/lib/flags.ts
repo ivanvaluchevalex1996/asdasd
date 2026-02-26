@@ -1,4 +1,3 @@
-
 export const getFlagPath = (iso: string) => {
   const isoLower = iso.toLowerCase();
   // Пробуем путь в public/assets (если файлы скопированы туда)
