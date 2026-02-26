@@ -6,13 +6,17 @@ import { getTranslation } from '@/lib/i18n';
 import { Button } from '@/domains/common/ui/button';
 import {
   Container,
-  CountriesListContainer,
   CountriesGrid,
+  SearchInputWrapper,
+  SearchIconWrapper,
   SearchInput,
   Title,
   LoadingText,
   ErrorMessage,
+  ContentContainer,
+  TextStyled,
 } from './theme';
+import { SearchIcon } from './search-icon';
 
 type TCountriesListProps = {
   displayedCountries: TCountryListItem[];
@@ -51,12 +55,17 @@ const CountriesList = memo(
     if (isLoading) {
       return (
         <Container>
-          <SearchInput
-            type="text"
-            placeholder={getTranslation(language, 'searchPlaceholder')}
-            value={searchQuery}
-            onChange={(e) => onSearchChange(e.target.value)}
-          />
+          <SearchInputWrapper>
+            <SearchIconWrapper>
+              <SearchIcon />
+            </SearchIconWrapper>
+            <SearchInput
+              type="text"
+              placeholder={getTranslation(language, 'searchPlaceholder')}
+              value={searchQuery}
+              onChange={(e) => onSearchChange(e.target.value)}
+            />
+          </SearchInputWrapper>
           <LoadingText>{getTranslation(language, 'loadingCountries')}</LoadingText>
         </Container>
       );
@@ -65,12 +74,17 @@ const CountriesList = memo(
     if (hasNoSearchResults) {
       return (
         <Container>
-          <SearchInput
-            type="text"
-            placeholder={getTranslation(language, 'searchPlaceholder')}
-            value={searchQuery}
-            onChange={(e) => onSearchChange(e.target.value)}
-          />
+          <SearchInputWrapper>
+            <SearchIconWrapper>
+              <SearchIcon />
+            </SearchIconWrapper>
+            <SearchInput
+              type="text"
+              placeholder={getTranslation(language, 'searchPlaceholder')}
+              value={searchQuery}
+              onChange={(e) => onSearchChange(e.target.value)}
+            />
+          </SearchInputWrapper>
           <LoadingText>{getTranslation(language, 'noSearchResults')}</LoadingText>
         </Container>
       );
@@ -79,20 +93,27 @@ const CountriesList = memo(
     return (
       <Container>
         <Title>{getTranslation(language, 'countriesForTravel')}</Title>
-        <SearchInput
-          type="text"
-          placeholder={getTranslation(language, 'searchPlaceholder')}
-          value={searchQuery}
-          onChange={(e) => onSearchChange(e.target.value)}
-        />
+        <SearchInputWrapper>
+          <SearchIconWrapper>
+            <SearchIcon />
+          </SearchIconWrapper>
+          <SearchInput
+            type="text"
+            placeholder={getTranslation(language, 'searchPlaceholder')}
+            value={searchQuery}
+            onChange={(e) => onSearchChange(e.target.value)}
+          />
+        </SearchInputWrapper>
 
-        <CountriesListContainer>
+        <ContentContainer>
+          <TextStyled>Популярные страны</TextStyled>
           <CountriesGrid>
             {displayedCountries.map((country) => (
+              // <CountryItem key={country.id} country={country} />
               <CountryItem key={country.id} country={country} />
             ))}
           </CountriesGrid>
-        </CountriesListContainer>
+        </ContentContainer>
 
         {showToggleButton && (
           <Button fullWidth centered onClick={onShowMore}>

@@ -41,6 +41,5 @@ export const StyledButton = styled.button<TStyledButtonProps>`
 
   @media (min-width: ${BREAKPOINTS.tablet}) {
     width: ${({ $fullWidth, $centered }) => ($fullWidth ? '100%' : $centered ? 'auto' : '115px')};
-    max-width: ${({ $centered }) => ($centered ? 'none' : 'none')};
   }
 `;

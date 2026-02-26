@@ -4,10 +4,8 @@ import { useLanguage } from '@/context/LanguageContext';
 import { getTranslation } from '@/lib/i18n';
 import { getFlagPath } from '@/lib/utils';
 import {
-  Container,
   CountriesListContainer,
   SectionTitle,
-  CountryCard,
   CountryFlag,
   CountryName,
   OperatorsList,
@@ -15,6 +13,26 @@ import {
   LoadingMessage,
   ErrorMessage,
 } from './theme';
+import { styled } from 'styled-components';
+import { BREAKPOINTS } from '@/constants/BREAKPOINTS';
+
+export const DetailContainer = styled.div`
+  width: 100%;
+  margin: 0 auto;
+  max-width: 720px;
+  padding: 0px;
+
+  @media (max-width: ${BREAKPOINTS.tablet}) {
+    padding: 0 8px;
+  }
+`;
+
+export const CountryCardDetail = styled.div`
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  border-radius: 12px;
+`;
 
 type TCountryDetailProps = {
   country: TCountry | null;
@@ -26,28 +44,20 @@ const CountryDetail = ({ country, error, isLoading }: TCountryDetailProps) => {
   const { language } = useLanguage();
 
   if (isLoading) {
-    return (
-      <Container>
-        <LoadingMessage>{getTranslation(language, 'loadingCountries')}</LoadingMessage>
-      </Container>
-    );
+    return <LoadingMessage>{getTranslation(language, 'loadingCountries')}</LoadingMessage>;
   }
 
   if (error || !country) {
-    return (
-      <Container>
-        <ErrorMessage>{error || getTranslation(language, 'countryNotFound')}</ErrorMessage>
-      </Container>
-    );
+    return <ErrorMessage>{error || getTranslation(language, 'countryNotFound')}</ErrorMessage>;
   }
 
   const flagPath = getFlagPath(country.iso);
 
   return (
-    <Container>
+    <DetailContainer>
       <CountriesListContainer>
         <SectionTitle>{getTranslation(language, 'countriesOperators')}</SectionTitle>
-        <CountryCard>
+        <CountryCardDetail>
           <CountryFlag>
             <Image
               src={flagPath}
@@ -71,9 +81,9 @@ const CountryDetail = ({ country, error, isLoading }: TCountryDetailProps) => {
               ))}
             </OperatorsList>
           )}
-        </CountryCard>
+        </CountryCardDetail>
       </CountriesListContainer>
-    </Container>
+    </DetailContainer>
   );
 };
 

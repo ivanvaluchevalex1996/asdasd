@@ -2,6 +2,7 @@ import styled, { keyframes } from 'styled-components';
 import { COLORS } from '@/constants/COLORS';
 import { BREAKPOINTS } from '@/constants/BREAKPOINTS';
 import { Button } from '@/domains/common/ui/button';
+import { Input } from '@/domains/common/ui/input';
 
 // Анимация для появления модалки
 export const slideIn = keyframes`
@@ -34,6 +35,7 @@ export const ModalOverlay = styled.div`
   display: flex;
   justify-content: center;
   align-items: center;
+  z-index: 1;
 `;
 
 export const ModalContent = styled.div<{ isClosing: boolean }>`
@@ -91,23 +93,15 @@ export const ModalButtonContainer = styled.div`
   position: relative;
 `;
 
-export const ModalInput = styled.input<{ error: string }>`
+export const ModalInputWrapper = styled.div`
   position: absolute;
   bottom: 74px;
-  height: 46px;
+  left: 0;
+  right: 0;
   width: 100%;
-  padding: 0 16px;
-  font-size: 17px;
-  border: ${({ error }) => (error ? `2px solid ${COLORS.ERROR_COLOR}` : 'none')};
-  border-radius: 10px;
-  outline: none;
-  background-color: #0000000f;
-  color: ${COLORS.TEXT_DARK};
-
-  &::placeholder {
-    color: #00000075;
-  }
 `;
+
+export const ModalInput = styled(Input)``;
 
 export const ModalErrorMessage = styled.p<{ $visible: boolean }>`
   position: absolute;
@@ -119,7 +113,9 @@ export const ModalErrorMessage = styled.p<{ $visible: boolean }>`
 `;
 
 export const ModalSubmitButton = styled(Button)`
-  margin-top: 24px;
-  @media (min-width: ${BREAKPOINTS.tablet}) {
-  }
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  width: 100%;
 `;

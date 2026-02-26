@@ -2,17 +2,11 @@ import styled from 'styled-components';
 import { COLORS } from '@/constants/COLORS';
 import { BREAKPOINTS } from '@/constants/BREAKPOINTS';
 
-export const Container = styled.div`
-  width: 100%;
-  margin: 0 auto;
-  max-width: 720px;
-`;
-
 export const CountriesListContainer = styled.div`
-  background-color: ${COLORS.WHITE};
   border-radius: 12px;
   padding: 12px;
   margin-top: 16px;
+  background-color: ${COLORS.WHITE};
 
   @media (min-width: ${BREAKPOINTS.tablet}) {
     border-radius: 16px;
@@ -39,14 +33,10 @@ export const CountryCard = styled.div`
   gap: 10px;
   padding: 10px 12px;
   background-color: ${COLORS.WHITE};
-  border-radius: 10px;
-  margin-bottom: 10px;
+  border-radius: 12px;
 
   @media (min-width: ${BREAKPOINTS.tablet}) {
     gap: 12px;
-    padding: 12px;
-    border-radius: 12px;
-    margin-bottom: 12px;
   }
 `;
 
@@ -90,7 +80,7 @@ export const OperatorsList = styled.div`
   display: flex;
   flex-direction: column;
   gap: 4px;
-  align-items: flex-end;
+  align-items: flex-start;
 `;
 
 export const OperatorName = styled.div`

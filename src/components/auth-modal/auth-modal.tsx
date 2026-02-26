@@ -5,6 +5,7 @@ import {
   ModalContent,
   ModalCloseButton,
   ModalTitle,
+  ModalInputWrapper,
   ModalInput,
   ModalErrorMessage,
   ModalSubmitButton,
@@ -45,14 +46,16 @@ const AuthModal = ({
         <ModalTitle>{getTranslation(language, 'signInToContinue')}</ModalTitle>
 
         <ModalButtonContainer>
-          <ModalInput
-            type="email"
-            placeholder="your@email.com"
-            value={email}
-            onChange={onEmailChange}
-            error={emailError}
-            autoFocus
-          />
+          <ModalInputWrapper>
+            <ModalInput
+              type="email"
+              placeholder="your@email.com"
+              value={email}
+              onChange={onEmailChange}
+              $error={emailError}
+              autoFocus
+            />
+          </ModalInputWrapper>
           <ModalErrorMessage $visible={!!emailError}>{emailError}</ModalErrorMessage>
           <ModalSubmitButton fullWidth disabled={!email || !!emailError} onClick={onContinue}>
             {getTranslation(language, 'continue')}

@@ -1,16 +1,10 @@
 import { memo } from 'react';
 import Image from 'next/image';
 import Link from 'next/link';
-import {
-  CountryCard,
-  CountryName,
-  CountryPrice,
-  CountryFlag,
-  CountryInfo,
-  ChevronIcon,
-} from './theme';
+import { CountryName, CountryPrice, CountryFlag, CountryInfo, ChevronIcon } from './theme';
 import { TCountryListItem } from '@/types/types';
 import { getFlagPath } from '@/lib/utils';
+import { CountryCard } from '../country-detail/theme';
 
 type TCountryItemProps = {
   country: TCountryListItem;

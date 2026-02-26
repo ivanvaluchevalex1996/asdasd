@@ -18,7 +18,7 @@ export enum COLORS {
   WHITE = 'white',
 
   // Цвета фона
-  CARD_BACKGROUND = '#f5f5f5',
+  CARD_BACKGROUND = '#F7F7F7',
   CARD_HOVER = '#e8e8e8',
   CARD_ACTIVE = '#ddd',
   OVERLAY_BACKGROUND = '#00000099',
