@@ -30,3 +30,12 @@ export type TCountry = {
     symbol: string;
   };
 };
+
+/** Минимальный набор полей для списка стран на главной (без search, operators и т.д.) */
+export type TCountryListItem = {
+  id: string;
+  country: string;
+  iso: string;
+  url: string;
+  price: { amount: string; symbol: string };
+};

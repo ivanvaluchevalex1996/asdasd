@@ -1,20 +1,17 @@
 import { useEffect, useState, useCallback, useMemo } from 'react';
-import { useRouter } from 'next/router';
-import { TCountry } from '@/types/types';
+import { TCountryListItem } from '@/types/types';
 import { useLanguage } from '@/context/LanguageContext';
 import CountriesList from '@/components/countries-list';
 import { COUNTRIES_PER_PAGE } from '@/constants/COUNTRIES_PER_PAGE';
 import { SEARCH_DEBOUNCE_MS } from '@/constants/TIMEOUTS';
-import { normalizeUrl } from '@/lib/url-utils';
 
 type THomePageProps = {
-  countriesEn: TCountry[];
-  countriesRu: TCountry[];
+  countriesEn: TCountryListItem[];
+  countriesRu: TCountryListItem[];
   hasError?: boolean;
 };
 
 export default function HomePage({ countriesEn, countriesRu, hasError }: THomePageProps) {
-  const { push } = useRouter();
   const { language } = useLanguage();
 
   // Выбираем страны из статических данных в зависимости от языка
@@ -72,14 +69,6 @@ export default function HomePage({ countriesEn, countriesRu, hasError }: THomePa
     setDisplayedCount(filteredCountries.length);
   }, [filteredCountries.length]);
 
-  const handleCountryClick = useCallback(
-    (country: TCountry) => {
-      const countryName = normalizeUrl(country.url);
-      push(`/country/${countryName}`);
-    },
-    [push]
-  );
-
   const handleSearchChange = useCallback((query: string) => {
     setSearchQuery(query);
   }, []);
@@ -92,7 +81,6 @@ export default function HomePage({ countriesEn, countriesRu, hasError }: THomePa
       isLoading={isLoading}
       hasError={hasError}
       searchQuery={searchQuery}
-      onCountryClick={handleCountryClick}
       onSearchChange={handleSearchChange}
       onShowMore={handleShowMore}
     />

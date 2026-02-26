@@ -1,7 +1,7 @@
 import { createContext, useContext, useState, ReactNode } from 'react';
 import { TLanguage } from '@/lib/i18n';
 import { ERRORS } from '@/constants/ERRORS';
-import { setCookie } from '@/lib/cookie-utils';
+import { setCookie } from '@/lib/utils';
 
 const LANGUAGE_COOKIE = 'language';
 

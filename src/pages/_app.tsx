@@ -4,7 +4,7 @@ import type { AppProps } from 'next/app';
 import type { AppContext } from 'next/app';
 import Layout from '@/components/layout';
 import { LanguageProvider } from '@/context/LanguageContext';
-import { getCookie } from '@/lib/cookie-utils';
+import { getCookie } from '@/lib/utils';
 import type { TLanguage } from '@/lib/i18n';
 
 const LANGUAGE_COOKIE = 'language';

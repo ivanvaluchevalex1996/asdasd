@@ -1,5 +1,5 @@
 import { memo } from 'react';
-import { TCountry } from '@/types/types';
+import { TCountryListItem } from '@/types/types';
 import CountryItem from '@/components/country-item';
 import { useLanguage } from '@/context/LanguageContext';
 import { getTranslation } from '@/lib/i18n';
@@ -15,13 +15,12 @@ import {
 } from './theme';
 
 type TCountriesListProps = {
-  displayedCountries: TCountry[];
+  displayedCountries: TCountryListItem[];
   hasMore: boolean;
   hasNoSearchResults: boolean;
   isLoading: boolean;
   hasError?: boolean;
   searchQuery: string;
-  onCountryClick: (country: TCountry) => void;
   onSearchChange: (query: string) => void;
   onShowMore: () => void;
 };
@@ -34,7 +33,6 @@ const CountriesList = memo(
     isLoading,
     hasError,
     searchQuery,
-    onCountryClick,
     onSearchChange,
     onShowMore,
   }: TCountriesListProps) => {
@@ -89,7 +87,7 @@ const CountriesList = memo(
         <CountriesListContainer>
           <CountriesGrid>
             {displayedCountries.map((country) => (
-              <CountryItem key={country.id} country={country} onClick={onCountryClick} />
+              <CountryItem key={country.id} country={country} />
             ))}
           </CountriesGrid>
         </CountriesListContainer>

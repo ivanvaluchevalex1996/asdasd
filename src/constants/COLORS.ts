@@ -1,9 +1,4 @@
 export enum COLORS {
-  // Основные цвета
-  PRIMARY_COLOR = '#1D154F',
-  SECONDARY_COLOR = '#5E6976',
-
-  // Цвета кнопок
   PRIMARY_BUTTON = 'cadetblue',
   PRIMARY_BUTTON_HOVER = '#5f9ea0',
   DANGER_COLOR = '#dc3545',

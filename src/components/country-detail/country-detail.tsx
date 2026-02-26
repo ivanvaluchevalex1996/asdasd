@@ -2,7 +2,7 @@ import Image from 'next/image';
 import { TCountry } from '@/types/types';
 import { useLanguage } from '@/context/LanguageContext';
 import { getTranslation } from '@/lib/i18n';
-import { getFlagPath } from '@/lib/flags';
+import { getFlagPath } from '@/lib/utils';
 import {
   Container,
   CountriesListContainer,

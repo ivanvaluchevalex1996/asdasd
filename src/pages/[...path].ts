@@ -2,8 +2,6 @@ import { GetStaticPaths, GetStaticProps } from 'next';
 import { TCountry } from '@/types/types';
 import { BASE_URL } from '@/constants/BASE_URL';
 import { REVALIDATE_SECONDS } from '@/constants/TIMEOUTS';
-import { normalizeUrl } from '@/lib/url-utils';
-import { findCountryByName } from '@/lib/api-helpers';
 import CountryPage from '@/domains/country/country-page';
 import { ERRORS } from '@/constants/ERRORS';
 
@@ -13,7 +11,6 @@ type TProps = {
   name: string;
 };
 
-// Генерируем пути для всех стран при билде
 export const getStaticPaths: GetStaticPaths = async () => {
   try {
     const response = await fetch(`${BASE_URL}?lang=ru`);
@@ -21,12 +18,13 @@ export const getStaticPaths: GetStaticPaths = async () => {
       throw new Error(`${ERRORS.API_ERROR}: ${response.status}`);
     }
     const data: TCountry[][] = await response.json();
+    // Передаём путь из API как есть: url "/country/liechtenstein/" → params.path = ['country', 'liechtenstein']
     const paths = data[0]
       .map((c) => {
-        const normalizedName = normalizeUrl(c.url);
-        return normalizedName ? { params: { name: normalizedName } } : null;
+        const path = c.url.slice(0, -1).split('/').filter(Boolean);
+        return path.length >= 2 ? { params: { path } } : null;
       })
-      .filter((path): path is { params: { name: string } } => path !== null);
+      .filter((p): p is { params: { path: string[] } } => p !== null);
 
     return { paths, fallback: 'blocking' };
   } catch (error) {
@@ -35,13 +33,14 @@ export const getStaticPaths: GetStaticPaths = async () => {
   }
 };
 
-// Получаем данные конкретной страны при билде только для базового языка (ru)
 export const getStaticProps: GetStaticProps<TProps> = async ({ params }) => {
   try {
-    const name = params?.name as string;
-    if (!name) {
-      throw new Error(ERRORS.NAME_PARAMETER_MISSING);
+    const path = params?.path as string[] | undefined;
+    if (!path || path[0] !== 'country' || path.length !== 2) {
+      return { notFound: true };
     }
+
+    const pathStr = `/${path.join('/')}`;
 
     const [responseRu, responseEn] = await Promise.all([
       fetch(`${BASE_URL}?lang=ru`),
@@ -57,15 +56,15 @@ export const getStaticProps: GetStaticProps<TProps> = async ({ params }) => {
       responseEn.json(),
     ]);
 
-    const countryRu = findCountryByName(dataRu[0], name);
-    const countryEn = findCountryByName(dataEn[0], name);
+    const countryRu = dataRu[0].find((c) => c.url.slice(0, -1) === pathStr) ?? null;
+    const countryEn = dataEn[0].find((c) => c.url.slice(0, -1) === pathStr) ?? null;
 
     if (!countryRu && !countryEn) {
-      throw new Error(`${ERRORS.COUNTRY_NOT_FOUND}: ${name}`);
+      return { notFound: true };
     }
 
     return {
-      props: { countryRu, countryEn, name },
+      props: { countryRu, countryEn, name: path[1] },
       revalidate: REVALIDATE_SECONDS,
     };
   } catch (error) {
