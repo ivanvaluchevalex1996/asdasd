@@ -20,6 +20,8 @@ export const translations = {
     noSearchResults: 'No countries found',
     errorLoadingCountries: 'Error loading countries. Please try again later.',
     invalidEmail: 'Please enter a valid email',
+    howItWorks: 'How it works',
+    sliderCardTitle: 'Very long title',
   },
   ru: {
     signIn: 'Войти',
@@ -40,6 +42,8 @@ export const translations = {
     noSearchResults: 'Страны не найдены',
     errorLoadingCountries: 'Ошибка при загрузке стран. Пожалуйста, попробуйте позже.',
     invalidEmail: 'Пожалуйста, введите корректный email',
+    howItWorks: 'Как это работает',
+    sliderCardTitle: 'Очень длинный заголовок',
   },
 };
 

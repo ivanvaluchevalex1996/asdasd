@@ -2,6 +2,7 @@ import { useEffect, useState, useCallback, useMemo } from 'react';
 import { TCountryListItem } from '@/types/types';
 import { useLanguage } from '@/context/LanguageContext';
 import CountriesList from '@/components/countries-list';
+import HowItWorksSlider from '@/components/how-it-works-slider';
 import { COUNTRIES_PER_PAGE } from '@/constants/COUNTRIES_PER_PAGE';
 import { SEARCH_DEBOUNCE_MS } from '@/constants/TIMEOUTS';
 
@@ -83,16 +84,19 @@ export default function HomePage({ countriesEn, countriesRu, hasError }: THomePa
   }, []);
 
   return (
-    <CountriesList
-      displayedCountries={countriesToDisplay}
-      showToggleButton={showToggleButton}
-      isShowingAll={isShowingAll}
-      hasNoSearchResults={hasNoSearchResults}
-      isLoading={isLoading}
-      hasError={hasError}
-      searchQuery={searchQuery}
-      onSearchChange={handleSearchChange}
-      onShowMore={handleShowMore}
-    />
+    <>
+      <CountriesList
+        displayedCountries={countriesToDisplay}
+        showToggleButton={showToggleButton}
+        isShowingAll={isShowingAll}
+        hasNoSearchResults={hasNoSearchResults}
+        isLoading={isLoading}
+        hasError={hasError}
+        searchQuery={searchQuery}
+        onSearchChange={handleSearchChange}
+        onShowMore={handleShowMore}
+      />
+      <HowItWorksSlider />
+    </>
   );
 }
