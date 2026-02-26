@@ -15,10 +15,6 @@ const Layout = ({ children }: PropsWithChildren) => {
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [isClosing, setIsClosing] = useState(false);
   const [email, setEmail] = useState('');
-  //
-  //
-  //
-  //
   const [isLoggedIn, setIsLoggedIn] = useState(false);
   const [emailError, setEmailError] = useState('');
 
