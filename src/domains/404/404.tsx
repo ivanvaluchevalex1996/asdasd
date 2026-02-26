@@ -1,8 +1,8 @@
-import { useRouter } from "next/router";
-import { useLanguage } from "@/context/LanguageContext";
-import { getTranslation } from "@/lib/i18n";
-import styled from "styled-components";
-import { COLORS } from "@/constants/COLORS";
+import { useRouter } from 'next/router';
+import { useLanguage } from '@/context/LanguageContext';
+import { getTranslation } from '@/lib/i18n';
+import styled from 'styled-components';
+import { COLORS } from '@/constants/COLORS';
 
 const Container = styled.div`
   max-width: 1200px;
@@ -64,28 +64,26 @@ const ShowMoreButton = styled.button`
   }
 `;
 
-const ErrorPage = () => {
+const Custom404 = () => {
   const router = useRouter();
   const { language } = useLanguage();
 
   const handleGoHome = () => {
-    router.push("/");
+    router.push('/');
   };
 
   return (
     <Container>
       <ErrorContainer>
         <ErrorCode>404</ErrorCode>
-        <ErrorTitle>{getTranslation(language, "pageNotFound")}</ErrorTitle>
-        <ErrorDescription>
-          {getTranslation(language, "pageNotFoundDescription")}
-        </ErrorDescription>
+        <ErrorTitle>{getTranslation(language, 'pageNotFound')}</ErrorTitle>
+        <ErrorDescription>{getTranslation(language, 'pageNotFoundDescription')}</ErrorDescription>
         <ShowMoreButton onClick={handleGoHome}>
-          {getTranslation(language, "goToHomePage")}
+          {getTranslation(language, 'goToHomePage')}
         </ShowMoreButton>
       </ErrorContainer>
     </Container>
   );
 };
 
-export default ErrorPage;
+export default Custom404;
