@@ -10,13 +10,13 @@ const eslintConfig = defineConfig([
       'react-hooks/set-state-in-effect': 'off',
     },
   },
-  globalIgnores([
-    '.next/**',
-    'out/**',
-    'build/**',
-    'next-env.d.ts',
-    '**/*.css',
-  ]),
+    globalIgnores([
+      '.next/**',
+      'out/**',
+      'build/**',
+      'next-env.d.ts',
+      '**/*.css',
+    ]),
 ]);
 
 export default eslintConfig;
