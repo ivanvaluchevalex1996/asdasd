@@ -55,10 +55,17 @@ export default function HomePage({ countriesEn, countriesRu, hasError }: THomePa
     return filteredCountries.slice(0, displayedCount);
   }, [filteredCountries, displayedCount]);
 
-  // Проверяем, есть ли еще карточки для показа
-  const hasMore = useMemo(() => {
-    return displayedCount < filteredCountries.length;
+  // Показаны ли сейчас все страны (для переключателя «все / популярные»)
+  const isShowingAll = useMemo(() => {
+    return (
+      displayedCount >= filteredCountries.length && filteredCountries.length > COUNTRIES_PER_PAGE
+    );
   }, [displayedCount, filteredCountries.length]);
+
+  // Показывать кнопку переключения, когда стран больше чем COUNTRIES_PER_PAGE
+  const showToggleButton = useMemo(() => {
+    return filteredCountries.length > COUNTRIES_PER_PAGE;
+  }, [filteredCountries.length]);
 
   // Проверяем, есть ли результаты поиска
   const hasNoSearchResults = useMemo(() => {
@@ -66,7 +73,9 @@ export default function HomePage({ countriesEn, countriesRu, hasError }: THomePa
   }, [debouncedSearchQuery, filteredCountries.length]);
 
   const handleShowMore = useCallback(() => {
-    setDisplayedCount(filteredCountries.length);
+    setDisplayedCount((prev) =>
+      prev >= filteredCountries.length ? COUNTRIES_PER_PAGE : filteredCountries.length
+    );
   }, [filteredCountries.length]);
 
   const handleSearchChange = useCallback((query: string) => {
@@ -76,7 +85,8 @@ export default function HomePage({ countriesEn, countriesRu, hasError }: THomePa
   return (
     <CountriesList
       displayedCountries={countriesToDisplay}
-      hasMore={hasMore}
+      showToggleButton={showToggleButton}
+      isShowingAll={isShowingAll}
       hasNoSearchResults={hasNoSearchResults}
       isLoading={isLoading}
       hasError={hasError}

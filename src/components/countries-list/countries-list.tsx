@@ -16,7 +16,8 @@ import {
 
 type TCountriesListProps = {
   displayedCountries: TCountryListItem[];
-  hasMore: boolean;
+  showToggleButton: boolean;
+  isShowingAll: boolean;
   hasNoSearchResults: boolean;
   isLoading: boolean;
   hasError?: boolean;
@@ -28,7 +29,8 @@ type TCountriesListProps = {
 const CountriesList = memo(
   ({
     displayedCountries,
-    hasMore,
+    showToggleButton,
+    isShowingAll,
     hasNoSearchResults,
     isLoading,
     hasError,
@@ -92,9 +94,11 @@ const CountriesList = memo(
           </CountriesGrid>
         </CountriesListContainer>
 
-        {hasMore && (
+        {showToggleButton && (
           <ShowMoreButton onClick={onShowMore}>
-            {getTranslation(language, 'showAllCountries')}
+            {isShowingAll
+              ? getTranslation(language, 'showPopularCountries')
+              : getTranslation(language, 'showAllCountries')}
           </ShowMoreButton>
         )}
       </Container>
