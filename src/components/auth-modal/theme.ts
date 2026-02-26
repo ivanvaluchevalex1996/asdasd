@@ -1,5 +1,8 @@
 import styled, { keyframes } from 'styled-components';
 import { COLORS } from '@/constants/COLORS';
+import { BREAKPOINTS } from '@/constants/BREAKPOINTS';
+import { Button } from '@/domains/common/ui/button';
+import { Input } from '@/domains/common/ui/input';
 
 // Анимация для появления модалки
 export const slideIn = keyframes`
@@ -32,79 +35,87 @@ export const ModalOverlay = styled.div`
   display: flex;
   justify-content: center;
   align-items: center;
+  z-index: 1;
 `;
 
 export const ModalContent = styled.div<{ isClosing: boolean }>`
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  padding: 42px;
   background-color: ${COLORS.WHITE};
-  max-width: 400px;
-  width: 90%;
+  border-radius: 32px;
+  width: 450px;
+  height: 302px;
   position: relative;
   animation: ${({ isClosing }) => (isClosing ? slideOut : slideIn)} 0.3s ease;
+
+  @media (max-width: ${BREAKPOINTS.tablet}) {
+    width: 343px;
+    height: 275px;
+    padding: 24px;
+  }
 `;
 
 export const ModalTitle = styled.h2`
-  margin: 0 0 8px 0;
+  text-align: center;
   color: ${COLORS.TEXT_DARK};
-  font-size: 24px;
-  font-weight: 600;
+  line-height: 32px;
+  font-size: 28px;
+  font-weight: 700;
 `;
 
-export const ModalSubtitle = styled.p`
-  margin: 0 0 24px 0;
-  color: ${COLORS.TEXT_MEDIUM};
-  font-size: 14px;
-`;
-
-export const CloseButton = styled.button`
+export const ModalCloseButton = styled.button`
   position: absolute;
-  top: 16px;
-  right: 16px;
-  background: none;
+  top: 12px;
+  right: 12px;
+  width: 40px;
+  height: 40px;
+  padding: 0;
   border: none;
-  font-size: 24px;
+  border-radius: 50%;
+  background-color: #0000000a;
+  color: #00000099;
+  font-size: 26px;
   cursor: pointer;
-  color: ${COLORS.TEXT_LIGHT};
 
   &:hover {
-    color: ${COLORS.TEXT_DARK};
+    background-color: ${COLORS.CARD_ACTIVE};
+  }
+
+  @media (max-width: ${BREAKPOINTS.tablet}) {
+    top: 12px;
+    right: 12px;
   }
 `;
 
-export const Input = styled.input<{ error: string }>`
+export const ModalButtonContainer = styled.div`
+  position: relative;
+`;
+
+export const ModalInputWrapper = styled.div`
+  position: absolute;
+  bottom: 74px;
+  left: 0;
+  right: 0;
   width: 100%;
-  padding: 12px 16px;
-  border: 2px solid ${({ error }) => (error ? COLORS.ERROR_COLOR : COLORS.BORDER_COLOR)};
-  border-radius: 10px;
-  font-size: 16px;
-  margin-bottom: 8px;
-  outline: none;
-
-  &:focus {
-    border-color: ${({ error }) => (error ? COLORS.ERROR_COLOR : COLORS.PRIMARY_BUTTON)};
-  }
 `;
 
-export const ErrorMessage = styled.p`
+export const ModalInput = styled(Input)``;
+
+export const ModalErrorMessage = styled.p<{ $visible: boolean }>`
+  position: absolute;
+  bottom: 55px;
+  display: ${({ $visible }) => ($visible ? 'block' : 'none')};
   color: ${COLORS.ERROR_COLOR};
   font-size: 14px;
-  margin: 0 0 16px 0;
-  min-height: 19px;
+  min-height: 0;
 `;
 
-export const ContinueButton = styled.button<{ disabled: boolean }>`
+export const ModalSubmitButton = styled(Button)`
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
   width: 100%;
-  padding: 12px;
-  background-color: ${({ disabled }) => (disabled ? COLORS.DISABLED_COLOR : COLORS.PRIMARY_BUTTON)};
-  color: ${COLORS.WHITE};
-  border: none;
-  border-radius: 10px;
-  font-size: 16px;
-  font-weight: 500;
-  cursor: ${({ disabled }) => (disabled ? 'not-allowed' : 'pointer')};
-  transition: background-color 0.3s;
-
-  &:hover {
-    background-color: ${({ disabled }) =>
-      disabled ? COLORS.DISABLED_COLOR : COLORS.PRIMARY_BUTTON_HOVER};
-  }
 `;

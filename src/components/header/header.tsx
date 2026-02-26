@@ -1,7 +1,8 @@
 import Image from 'next/image';
 import { useLanguage } from '@/context/LanguageContext';
 import { getTranslation } from '@/lib/i18n';
-import { StyledBlock, Logo, AuthButton, LanguageSelect, HeaderControls } from './theme';
+import { Button } from '@/domains/common/ui/button';
+import { StyledBlock, Logo, AuthButtonWrapper, LanguageSelect, HeaderControls } from './theme';
 
 type THeaderProps = {
   isLoggedIn: boolean;
@@ -27,9 +28,14 @@ const Header = ({ isLoggedIn, onLogin, onLogout }: THeaderProps) => {
           <option value="en">ENG</option>
           <option value="ru">RU</option>
         </LanguageSelect>
-        <AuthButton $isLoggedIn={isLoggedIn} onClick={isLoggedIn ? onLogout : onLogin}>
-          {isLoggedIn ? getTranslation(language, 'signOut') : getTranslation(language, 'signIn')}
-        </AuthButton>
+        <AuthButtonWrapper>
+          <Button
+            variant={isLoggedIn ? 'danger' : 'primary'}
+            onClick={isLoggedIn ? onLogout : onLogin}
+          >
+            {isLoggedIn ? getTranslation(language, 'signOut') : getTranslation(language, 'signIn')}
+          </Button>
+        </AuthButtonWrapper>
       </HeaderControls>
     </StyledBlock>
   );

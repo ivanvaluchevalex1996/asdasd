@@ -1,6 +1,7 @@
 import { useRouter } from 'next/router';
 import { useLanguage } from '@/context/LanguageContext';
 import { getTranslation } from '@/lib/i18n';
+import { Button } from '@/domains/common/ui/button';
 import styled from 'styled-components';
 import { COLORS } from '@/constants/COLORS';
 
@@ -58,37 +59,6 @@ const ErrorDescription = styled.p`
   }
 `;
 
-const ShowMoreButton = styled.button`
-  display: block;
-  margin: 0 auto;
-  padding: 12px 24px;
-  background-color: ${COLORS.PRIMARY_BUTTON};
-  color: ${COLORS.WHITE};
-  border: none;
-  border-radius: 24px;
-  font-size: 15px;
-  cursor: pointer;
-  transition: background-color 0.3s;
-  width: 100%;
-  max-width: 280px;
-
-  &:hover {
-    background-color: ${COLORS.PRIMARY_BUTTON_HOVER};
-  }
-
-  &:disabled {
-    background-color: ${COLORS.DISABLED_COLOR};
-    cursor: not-allowed;
-  }
-
-  @media (min-width: 768px) {
-    padding: 12px 30px;
-    font-size: 16px;
-    width: auto;
-    max-width: none;
-  }
-`;
-
 const Custom404 = () => {
   const router = useRouter();
   const { language } = useLanguage();
@@ -103,9 +73,9 @@ const Custom404 = () => {
         <ErrorCode>404</ErrorCode>
         <ErrorTitle>{getTranslation(language, 'pageNotFound')}</ErrorTitle>
         <ErrorDescription>{getTranslation(language, 'pageNotFoundDescription')}</ErrorDescription>
-        <ShowMoreButton onClick={handleGoHome}>
+        <Button fullWidth centered onClick={handleGoHome}>
           {getTranslation(language, 'goToHomePage')}
-        </ShowMoreButton>
+        </Button>
       </ErrorContainer>
     </Container>
   );

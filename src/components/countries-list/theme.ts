@@ -1,23 +1,30 @@
 import styled from 'styled-components';
 import { COLORS } from '@/constants/COLORS';
 import { BREAKPOINTS } from '@/constants/BREAKPOINTS';
+import { Input } from '@/domains/common/ui/input';
 
 export const Container = styled.div`
   width: 100%;
   margin: 0 auto;
   max-width: 720px;
+  padding: 0px;
+
+  @media (max-width: ${BREAKPOINTS.tablet}) {
+    padding: 0 8px;
+  }
 `;
 
-export const CountriesListContainer = styled.div`
-  background-color: ${COLORS.WHITE};
-  border-radius: 12px;
-  padding: 12px;
-  margin-top: 16px;
+export const TextStyled = styled.p`
+  margin-left: 0px;
+`;
 
-  @media (min-width: ${BREAKPOINTS.tablet}) {
-    border-radius: 16px;
+export const ContentContainer = styled.div`
+  padding: 24px;
+  border-radius: 12px;
+  background-color: ${COLORS.WHITE};
+
+  @media (max-width: ${BREAKPOINTS.tablet}) {
     padding: 16px;
-    margin-top: 20px;
   }
 `;
 
@@ -32,57 +39,23 @@ export const CountriesGrid = styled.div`
   }
 `;
 
-export const ShowMoreButton = styled.button`
-  display: block;
-  margin: 24px auto;
-  padding: 12px 24px;
-  background-color: ${COLORS.PRIMARY_BUTTON};
-  color: ${COLORS.WHITE};
-  border: none;
-  border-radius: 24px;
-  font-size: 15px;
-  cursor: pointer;
-  transition: background-color 0.3s;
+export const SearchInputWrapper = styled.div`
+  position: relative;
   width: 100%;
-  max-width: 280px;
-
-  &:hover {
-    background-color: ${COLORS.PRIMARY_BUTTON_HOVER};
-  }
-
-  &:disabled {
-    background-color: ${COLORS.DISABLED_COLOR};
-    cursor: not-allowed;
-  }
-
-  @media (min-width: ${BREAKPOINTS.tablet}) {
-    margin: 30px auto;
-    padding: 12px 30px;
-    font-size: 16px;
-    width: auto;
-    max-width: none;
-  }
+  margin: 14px 0 16px;
 `;
 
-export const SearchInput = styled.input`
-  width: 100%;
-  padding: 12px 14px;
-  border: 2px solid ${COLORS.BORDER_COLOR};
-  border-radius: 10px;
-  font-size: 16px;
-  margin: 14px 0 16px;
-  outline: none;
-  box-sizing: border-box;
+export const SearchIconWrapper = styled.span`
+  position: absolute;
+  left: 16px;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 20px;
+  height: 20px;
+`;
 
-  &:focus {
-    border-color: ${COLORS.PRIMARY_BUTTON};
-  }
-
-  @media (min-width: ${BREAKPOINTS.tablet}) {
-    max-width: 500px;
-    padding: 12px 16px;
-    margin: 16px 0 20px;
-  }
+export const SearchInput = styled(Input)`
+  padding-left: 44px;
 `;
 
 export const Title = styled.h2`

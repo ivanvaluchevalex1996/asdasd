@@ -3,12 +3,13 @@ import { getTranslation } from '@/lib/i18n';
 import {
   ModalOverlay,
   ModalContent,
-  CloseButton,
+  ModalCloseButton,
   ModalTitle,
-  ModalSubtitle,
-  Input,
-  ErrorMessage,
-  ContinueButton,
+  ModalInputWrapper,
+  ModalInput,
+  ModalErrorMessage,
+  ModalSubmitButton,
+  ModalButtonContainer,
 } from './theme';
 
 type TAuthModalProps = {
@@ -40,25 +41,26 @@ const AuthModal = ({
         isClosing={isClosing}
         onClick={(e: React.MouseEvent<HTMLDivElement>) => e.stopPropagation()}
       >
-        <CloseButton onClick={onClose}>&times;</CloseButton>
+        <ModalCloseButton onClick={onClose}>&times;</ModalCloseButton>
 
         <ModalTitle>{getTranslation(language, 'signInToContinue')}</ModalTitle>
-        <ModalSubtitle>{getTranslation(language, 'enterEmail')}</ModalSubtitle>
 
-        <Input
-          type="email"
-          placeholder="your@email.com"
-          value={email}
-          onChange={onEmailChange}
-          error={emailError}
-          autoFocus
-        />
-
-        <ErrorMessage>{emailError}</ErrorMessage>
-
-        <ContinueButton disabled={!email || !!emailError} onClick={onContinue}>
-          {getTranslation(language, 'continue')}
-        </ContinueButton>
+        <ModalButtonContainer>
+          <ModalInputWrapper>
+            <ModalInput
+              type="email"
+              placeholder="your@email.com"
+              value={email}
+              onChange={onEmailChange}
+              $error={emailError}
+              autoFocus
+            />
+          </ModalInputWrapper>
+          <ModalErrorMessage $visible={!!emailError}>{emailError}</ModalErrorMessage>
+          <ModalSubmitButton fullWidth disabled={!email || !!emailError} onClick={onContinue}>
+            {getTranslation(language, 'continue')}
+          </ModalSubmitButton>
+        </ModalButtonContainer>
       </ModalContent>
     </ModalOverlay>
   );

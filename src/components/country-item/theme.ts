@@ -2,36 +2,6 @@ import styled from 'styled-components';
 import { COLORS } from '@/constants/COLORS';
 import { BREAKPOINTS } from '@/constants/BREAKPOINTS';
 
-export const CountryCard = styled.div`
-  display: flex;
-  align-items: center;
-  gap: 10px;
-  padding: 10px 12px;
-  background-color: ${COLORS.CARD_BACKGROUND};
-  border: none;
-  border-radius: 10px;
-  cursor: pointer;
-  transition: background-color 0.2s;
-  text-align: left;
-  width: 100%;
-  min-height: 56px;
-
-  &:hover {
-    background-color: ${COLORS.CARD_HOVER};
-  }
-
-  &:active {
-    background-color: ${COLORS.CARD_ACTIVE};
-  }
-
-  @media (min-width: ${BREAKPOINTS.tablet}) {
-    gap: 12px;
-    padding: 12px;
-    border-radius: 12px;
-    min-height: 60px;
-  }
-`;
-
 export const CountryFlag = styled.div`
   flex-shrink: 0;
   width: 40px;
@@ -63,6 +33,9 @@ export const CountryName = styled.h3`
   font-size: 15px;
   font-weight: 600;
   line-height: 1.25;
+  white-space: nowrap;
+  max-width: 230px;
+  overflow: hidden;
 
   @media (min-width: ${BREAKPOINTS.tablet}) {
     font-size: 16px;
