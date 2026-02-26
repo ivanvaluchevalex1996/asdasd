@@ -1,9 +1,9 @@
-import { GetStaticProps } from "next";
-import { TCountry } from "@/types/types";
-import { BASE_URL } from "@/constants/BASE_URL";
-import { REVALIDATE_SECONDS, REVALIDATE_ERROR_SECONDS } from "@/constants/TIMEOUTS";
-import { ERRORS } from "@/constants/ERRORS";
-import HomePage from "@/domains/home/home-page";
+import { GetStaticProps } from 'next';
+import { TCountry } from '@/types/types';
+import { BASE_URL } from '@/constants/BASE_URL';
+import { REVALIDATE_SECONDS, REVALIDATE_ERROR_SECONDS } from '@/constants/TIMEOUTS';
+import { ERRORS } from '@/constants/ERRORS';
+import HomePage from '@/domains/home/home-page';
 
 type TProps = {
   countriesRu: TCountry[];

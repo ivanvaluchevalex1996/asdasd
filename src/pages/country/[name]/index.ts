@@ -1,11 +1,11 @@
-import { GetStaticPaths, GetStaticProps } from "next";
-import { TCountry } from "@/types/types";
-import { BASE_URL } from "@/constants/BASE_URL";
-import { REVALIDATE_SECONDS } from "@/constants/TIMEOUTS";
-import { normalizeUrl } from "@/lib/url-utils";
-import { findCountryByName } from "@/lib/api-helpers";
-import CountryPage from "@/domains/country/country-page";
-import { ERRORS } from "@/constants/ERRORS";
+import { GetStaticPaths, GetStaticProps } from 'next';
+import { TCountry } from '@/types/types';
+import { BASE_URL } from '@/constants/BASE_URL';
+import { REVALIDATE_SECONDS } from '@/constants/TIMEOUTS';
+import { normalizeUrl } from '@/lib/url-utils';
+import { findCountryByName } from '@/lib/api-helpers';
+import CountryPage from '@/domains/country/country-page';
+import { ERRORS } from '@/constants/ERRORS';
 
 type TProps = {
   countryRu: TCountry | null;
@@ -28,11 +28,10 @@ export const getStaticPaths: GetStaticPaths = async () => {
       })
       .filter((path): path is { params: { name: string } } => path !== null);
 
-
-    return { paths, fallback: "blocking" };
+    return { paths, fallback: 'blocking' };
   } catch (error) {
     console.error(error);
-    return { paths: [], fallback: "blocking" };
+    return { paths: [], fallback: 'blocking' };
   }
 };
 

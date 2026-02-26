@@ -1,6 +1,9 @@
-import { createContext, useContext, useState, useEffect, ReactNode } from "react";
-import { TLanguage } from "@/lib/i18n";
-import { ERRORS } from "@/constants/ERRORS";
+import { createContext, useContext, useState, ReactNode } from 'react';
+import { TLanguage } from '@/lib/i18n';
+import { ERRORS } from '@/constants/ERRORS';
+import { setCookie } from '@/lib/cookie-utils';
+
+const LANGUAGE_COOKIE = 'language';
 
 type TLanguageContextType = {
   language: TLanguage;
@@ -9,19 +12,19 @@ type TLanguageContextType = {
 
 const LanguageContext = createContext<TLanguageContextType | undefined>(undefined);
 
-export const LanguageProvider = ({ children }: { children: ReactNode }) => {
-  const [language, setLanguageState] = useState<TLanguage>("ru");
-
-  useEffect(() => {
-    const savedLang = localStorage.getItem("language") as TLanguage;
-    if (savedLang && (savedLang === "en" || savedLang === "ru")) {
-      setLanguageState(savedLang);
-    }
-  }, []);
+export const LanguageProvider = ({
+  children,
+  initialLanguage,
+}: {
+  children: ReactNode;
+  initialLanguage: TLanguage;
+}) => {
+  const [language, setLanguageState] = useState<TLanguage>(initialLanguage);
 
   const setLanguage = (lang: TLanguage) => {
     setLanguageState(lang);
-    localStorage.setItem("language", lang);
+    setCookie(LANGUAGE_COOKIE, lang);
+    if (typeof window !== 'undefined') localStorage.setItem(LANGUAGE_COOKIE, lang);
   };
 
   return (
