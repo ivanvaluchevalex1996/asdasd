@@ -18,6 +18,7 @@ const Layout = ({ children }: PropsWithChildren) => {
   //
   //
   //
+  //
   const [isLoggedIn, setIsLoggedIn] = useState(false);
   const [emailError, setEmailError] = useState('');
 
