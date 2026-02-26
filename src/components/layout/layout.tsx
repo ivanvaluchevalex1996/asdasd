@@ -3,14 +3,11 @@ import { useRouter } from 'next/router';
 import { useLanguage } from '@/context/LanguageContext';
 import Header from '@/components/header';
 import AuthModal from '@/components/auth-modal';
-
-const validateEmail = (email: string) => {
-  const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-  return emailRegex.test(email);
-};
+import { validateEmail } from '@/lib/utils';
+import { getTranslation } from '@/lib/i18n';
 
 const Layout = ({ children }: PropsWithChildren) => {
-  const router = useRouter();
+  const { pathname, push } = useRouter();
   const { language } = useLanguage();
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [isClosing, setIsClosing] = useState(false);
@@ -24,9 +21,7 @@ const Layout = ({ children }: PropsWithChildren) => {
       setEmail(value);
 
       if (value && !validateEmail(value)) {
-        setEmailError(
-          language === 'ru' ? 'Пожалуйста, введите корректный email' : 'Please enter a valid email'
-        );
+        setEmailError(getTranslation(language, 'invalidEmail'));
       } else {
         setEmailError('');
       }
@@ -36,12 +31,10 @@ const Layout = ({ children }: PropsWithChildren) => {
 
   const handleClose = useCallback(() => {
     setIsClosing(true);
-    setTimeout(() => {
-      setIsModalOpen(false);
-      setIsClosing(false);
-      setEmail('');
-      setEmailError('');
-    }, 300);
+    setIsModalOpen(false);
+    setIsClosing(false);
+    setEmail('');
+    setEmailError('');
   }, []);
 
   const handleContinue = useCallback(() => {
@@ -55,11 +48,10 @@ const Layout = ({ children }: PropsWithChildren) => {
   const handleLogout = useCallback(() => {
     localStorage.removeItem('user');
     setIsLoggedIn(false);
-    // Перенаправляем на главную страницу, если пользователь не на главной
-    if (router.pathname !== '/') {
-      router.push('/');
+    if (pathname !== '/') {
+      push('/');
     }
-  }, [router]);
+  }, [pathname, push]);
 
   const handleOpen = useCallback(() => {
     setIsModalOpen(true);

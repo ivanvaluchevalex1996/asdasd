@@ -2,7 +2,7 @@ import styled from 'styled-components';
 import { COLORS } from '@/constants/COLORS';
 import { BREAKPOINTS } from '@/constants/BREAKPOINTS';
 
-export const CountryCard = styled.button`
+export const CountryCard = styled.div`
   display: flex;
   align-items: center;
   gap: 10px;

@@ -1,5 +1,6 @@
 import { memo } from 'react';
 import Image from 'next/image';
+import Link from 'next/link';
 import {
   CountryCard,
   CountryName,
@@ -8,40 +9,42 @@ import {
   CountryInfo,
   ChevronIcon,
 } from './theme';
-import { TCountry } from '@/types/types';
-import { getFlagPath } from '@/lib/flags';
+import { TCountryListItem } from '@/types/types';
+import { getFlagPath } from '@/lib/utils';
 
 type TCountryItemProps = {
-  country: TCountry;
-  onClick: (country: TCountry) => void;
+  country: TCountryListItem;
 };
 
-const CountryItem = memo(({ country, onClick }: TCountryItemProps) => {
+const CountryItem = memo(({ country }: TCountryItemProps) => {
   const flagPath = getFlagPath(country.iso);
+  const path = country.url.slice(0, -1);
 
   return (
-    <CountryCard onClick={() => onClick(country)}>
-      <CountryFlag>
-        <Image
-          src={flagPath}
-          alt={country.country}
-          width={40}
-          height={30}
-          unoptimized
-          style={{ width: '100%', height: '100%', objectFit: 'cover', borderRadius: '4px' }}
-          onError={(e) => {
-            e.currentTarget.style.display = 'none';
-          }}
-        />
-      </CountryFlag>
-      <CountryInfo>
-        <CountryName>{country.country}</CountryName>
-        <CountryPrice>
-          от {country.price.amount} {country.price.symbol}/GB
-        </CountryPrice>
-      </CountryInfo>
-      <ChevronIcon>›</ChevronIcon>
-    </CountryCard>
+    <Link href={path}>
+      <CountryCard>
+        <CountryFlag>
+          <Image
+            src={flagPath}
+            alt={country.country}
+            width={40}
+            height={30}
+            unoptimized
+            style={{ width: '100%', height: '100%', objectFit: 'cover', borderRadius: '4px' }}
+            onError={(e) => {
+              e.currentTarget.style.display = 'none';
+            }}
+          />
+        </CountryFlag>
+        <CountryInfo>
+          <CountryName>{country.country}</CountryName>
+          <CountryPrice>
+            от {country.price.amount} {country.price.symbol}/GB
+          </CountryPrice>
+        </CountryInfo>
+        <ChevronIcon>›</ChevronIcon>
+      </CountryCard>
+    </Link>
   );
 });
 
