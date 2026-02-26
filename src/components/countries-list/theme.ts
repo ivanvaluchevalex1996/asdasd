@@ -32,38 +32,6 @@ export const CountriesGrid = styled.div`
   }
 `;
 
-export const ShowMoreButton = styled.button`
-  display: block;
-  margin: 24px auto;
-  padding: 12px 24px;
-  background-color: ${COLORS.PRIMARY_BUTTON};
-  color: ${COLORS.WHITE};
-  border: none;
-  border-radius: 24px;
-  font-size: 15px;
-  cursor: pointer;
-  transition: background-color 0.3s;
-  width: 100%;
-  max-width: 280px;
-
-  &:hover {
-    background-color: ${COLORS.PRIMARY_BUTTON_HOVER};
-  }
-
-  &:disabled {
-    background-color: ${COLORS.DISABLED_COLOR};
-    cursor: not-allowed;
-  }
-
-  @media (min-width: ${BREAKPOINTS.tablet}) {
-    margin: 30px auto;
-    padding: 12px 30px;
-    font-size: 16px;
-    width: auto;
-    max-width: none;
-  }
-`;
-
 export const SearchInput = styled.input`
   width: 100%;
   padding: 12px 14px;

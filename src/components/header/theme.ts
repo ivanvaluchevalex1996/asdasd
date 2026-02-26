@@ -32,29 +32,8 @@ export const Logo = styled.div`
   }
 `;
 
-export const AuthButton = styled.button<{ $isLoggedIn: boolean }>`
-  background-color: ${({ $isLoggedIn }) =>
-    $isLoggedIn ? COLORS.DANGER_COLOR : COLORS.PRIMARY_BUTTON};
-  color: ${COLORS.WHITE};
-  border: none;
-  border-radius: 15px;
-  padding: 15px 24px;
-  cursor: pointer;
+export const AuthButtonWrapper = styled.div`
   margin-left: 24px;
-  font-family: Inter;
-  font-size: 13px;
-  font-weight: 500;
-
-  &:hover {
-    background-color: ${({ $isLoggedIn }) =>
-      $isLoggedIn ? COLORS.DANGER_HOVER : COLORS.PRIMARY_BUTTON_HOVER};
-  }
-
-  @media (min-width: ${BREAKPOINTS.tablet}) {
-    padding: 15px 32px;
-    margin-left: 24px;
-    font-size: 17px;
-  }
 `;
 
 export const LanguageSelect = styled.select`

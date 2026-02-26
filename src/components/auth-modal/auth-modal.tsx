@@ -5,10 +5,10 @@ import {
   ModalContent,
   CloseButton,
   ModalTitle,
-  ModalSubtitle,
   Input,
   ErrorMessage,
-  ContinueButton,
+  StyledButton,
+  ButtonContainer,
 } from './theme';
 
 type TAuthModalProps = {
@@ -43,22 +43,21 @@ const AuthModal = ({
         <CloseButton onClick={onClose}>&times;</CloseButton>
 
         <ModalTitle>{getTranslation(language, 'signInToContinue')}</ModalTitle>
-        <ModalSubtitle>{getTranslation(language, 'enterEmail')}</ModalSubtitle>
 
-        <Input
-          type="email"
-          placeholder="your@email.com"
-          value={email}
-          onChange={onEmailChange}
-          error={emailError}
-          autoFocus
-        />
-
-        <ErrorMessage>{emailError}</ErrorMessage>
-
-        <ContinueButton disabled={!email || !!emailError} onClick={onContinue}>
-          {getTranslation(language, 'continue')}
-        </ContinueButton>
+        <ButtonContainer>
+          <Input
+            type="email"
+            placeholder="your@email.com"
+            value={email}
+            onChange={onEmailChange}
+            error={emailError}
+            autoFocus
+          />
+          <ErrorMessage $visible={!!emailError}>{emailError}</ErrorMessage>
+          <StyledButton fullWidth disabled={!email || !!emailError} onClick={onContinue}>
+            {getTranslation(language, 'continue')}
+          </StyledButton>
+        </ButtonContainer>
       </ModalContent>
     </ModalOverlay>
   );

@@ -3,11 +3,11 @@ import { TCountryListItem } from '@/types/types';
 import CountryItem from '@/components/country-item';
 import { useLanguage } from '@/context/LanguageContext';
 import { getTranslation } from '@/lib/i18n';
+import { Button } from '@/domains/common/ui/button';
 import {
   Container,
   CountriesListContainer,
   CountriesGrid,
-  ShowMoreButton,
   SearchInput,
   Title,
   LoadingText,
@@ -95,11 +95,11 @@ const CountriesList = memo(
         </CountriesListContainer>
 
         {showToggleButton && (
-          <ShowMoreButton onClick={onShowMore}>
+          <Button fullWidth centered onClick={onShowMore}>
             {isShowingAll
               ? getTranslation(language, 'showPopularCountries')
               : getTranslation(language, 'showAllCountries')}
-          </ShowMoreButton>
+          </Button>
         )}
       </Container>
     );
