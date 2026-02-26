@@ -6,23 +6,29 @@ export const StyledBlock = styled.header`
   display: flex;
   justify-content: space-between;
   align-items: center;
-  background-color: ${COLORS.PRIMARY_BUTTON};
-  padding: 0 16px;
+  background-color: #ffffff;
+  padding: 17px 16px;
   width: 100%;
 
   @media (min-width: ${BREAKPOINTS.tablet}) {
-    padding: 14px 0;
+    padding: 10px 16px;
   }
 `;
 
 export const Logo = styled.div`
-  font-size: 18px;
-  font-weight: 700;
-  color: ${COLORS.WHITE};
-  letter-spacing: -0.02em;
+  display: flex;
+  align-items: center;
+
+  img {
+    display: block;
+    height: 30px;
+    width: 102.84;
+  }
 
   @media (min-width: ${BREAKPOINTS.tablet}) {
-    font-size: 20px;
+    img {
+      height: 30px;
+    }
   }
 `;
 
@@ -31,10 +37,11 @@ export const AuthButton = styled.button<{ $isLoggedIn: boolean }>`
     $isLoggedIn ? COLORS.DANGER_COLOR : COLORS.PRIMARY_BUTTON};
   color: ${COLORS.WHITE};
   border: none;
-  border-radius: 6px;
-  padding: 8px 12px;
+  border-radius: 15px;
+  padding: 15px 24px;
   cursor: pointer;
-  margin-left: 12px;
+  margin-left: 24px;
+  font-family: Inter;
   font-size: 13px;
   font-weight: 500;
 
@@ -44,26 +51,30 @@ export const AuthButton = styled.button<{ $isLoggedIn: boolean }>`
   }
 
   @media (min-width: ${BREAKPOINTS.tablet}) {
-    padding: 8px 16px;
-    margin-left: 16px;
-    font-size: 14px;
+    padding: 15px 32px;
+    margin-left: 24px;
+    font-size: 17px;
   }
 `;
 
 export const LanguageSelect = styled.select`
-  margin-right: 12px;
-  padding: 6px 10px;
-  font-size: 13px;
-  border-radius: 6px;
+  padding: 8px 12px;
+  font-size: 12px;
   border: none;
   cursor: pointer;
-  background-color: rgba(255, 255, 255, 0.2);
-  color: ${COLORS.WHITE};
+  // background: transparent;
+  color: ${COLORS.TEXT_DARK};
+  font-weight: 600;
+  border-radius: 0;
+  // transition: background-color 0.2s, border-radius 0.2s;
 
-  @media (min-width: ${BREAKPOINTS.tablet}) {
-    margin-right: 16px;
-    padding: 8px 12px;
-    font-size: 14px;
+  &:focus {
+    outline: none;
+  }
+
+  &:hover {
+    border-radius: 15px;
+    background-color: #e0e0e0;
   }
 `;
 

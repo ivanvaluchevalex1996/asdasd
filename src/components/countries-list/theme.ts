@@ -5,11 +5,7 @@ import { BREAKPOINTS } from '@/constants/BREAKPOINTS';
 export const Container = styled.div`
   width: 100%;
   margin: 0 auto;
-  max-width: 1200px;
-
-  @media (min-width: ${BREAKPOINTS.desktop}) {
-    max-width: 1200px;
-  }
+  max-width: 720px;
 `;
 
 export const CountriesListContainer = styled.div`

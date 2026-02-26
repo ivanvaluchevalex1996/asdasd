@@ -1,6 +1,12 @@
 export enum COLORS {
-  PRIMARY_BUTTON = 'cadetblue',
-  PRIMARY_BUTTON_HOVER = '#5f9ea0',
+  // Основные цвета
+  PRIMARY_COLOR = '#1D154F',
+  SECONDARY_COLOR = '#5E6976',
+
+  // Цвета кнопок (Default / Hover по макету)
+  PRIMARY_BUTTON = '#2E2F32',
+  PRIMARY_BUTTON_HOVER = '#19191A',
+
   DANGER_COLOR = '#dc3545',
   DANGER_HOVER = '#c82333',
   DISABLED_COLOR = '#ccc',

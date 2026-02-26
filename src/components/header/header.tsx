@@ -1,6 +1,7 @@
+import Image from 'next/image';
 import { useLanguage } from '@/context/LanguageContext';
 import { getTranslation } from '@/lib/i18n';
-import { StyledBlock, AuthButton, LanguageSelect, HeaderControls } from './theme';
+import { StyledBlock, Logo, AuthButton, LanguageSelect, HeaderControls } from './theme';
 
 type THeaderProps = {
   isLoggedIn: boolean;
@@ -13,7 +14,9 @@ const Header = ({ isLoggedIn, onLogin, onLogout }: THeaderProps) => {
 
   return (
     <StyledBlock>
-      <div>yesim</div>
+      <Logo>
+        <Image src="/logo.svg" alt="yesim" width={102.84} height={30} priority />
+      </Logo>
       <HeaderControls>
         <LanguageSelect
           name="language"
@@ -21,13 +24,11 @@ const Header = ({ isLoggedIn, onLogin, onLogout }: THeaderProps) => {
           value={language}
           onChange={(e) => setLanguage(e.target.value as 'en' | 'ru')}
         >
-          <option value="en">en</option>
-          <option value="ru">ru</option>
+          <option value="en">ENG</option>
+          <option value="ru">RU</option>
         </LanguageSelect>
         <AuthButton $isLoggedIn={isLoggedIn} onClick={isLoggedIn ? onLogout : onLogin}>
-          {isLoggedIn
-            ? getTranslation(language, 'signOut').toUpperCase()
-            : getTranslation(language, 'signIn').toUpperCase()}
+          {isLoggedIn ? getTranslation(language, 'signOut') : getTranslation(language, 'signIn')}
         </AuthButton>
       </HeaderControls>
     </StyledBlock>
