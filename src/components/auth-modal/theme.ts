@@ -45,6 +45,7 @@ export const ModalContent = styled.div<{ isClosing: boolean }>`
   padding: 42px;
   background-color: ${COLORS.WHITE};
   border-radius: 32px;
+  font-size: 28px;
   width: 450px;
   height: 302px;
   position: relative;
@@ -52,8 +53,8 @@ export const ModalContent = styled.div<{ isClosing: boolean }>`
 
   @media (max-width: ${BREAKPOINTS.tablet}) {
     width: 343px;
-    height: 275px;
-    padding: 24px;
+    height: 276px;
+    padding: 24px 24px 34px 24px;
   }
 `;
 

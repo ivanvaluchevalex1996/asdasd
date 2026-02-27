@@ -22,7 +22,7 @@ export const SectionTitle = styled.h2`
   color: ${COLORS.TEXT_DARK};
 
   @media (min-width: ${BREAKPOINTS.tablet}) {
-    font-size: 20px;
+    font-size: 24px;
     margin: 0 0 16px 0;
   }
 `;

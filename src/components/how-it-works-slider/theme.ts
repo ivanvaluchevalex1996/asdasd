@@ -27,7 +27,6 @@ export const SectionTitle = styled.h2`
   @media (min-width: ${BREAKPOINTS.tablet}) {
     font-size: 24px;
     margin-bottom: 20px;
-    padding: 0;
   }
 `;
 

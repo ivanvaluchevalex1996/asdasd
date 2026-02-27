@@ -49,7 +49,7 @@ const AuthModal = ({
           <ModalInputWrapper>
             <ModalInput
               type="email"
-              placeholder="your@email.com"
+              placeholder="Введите email"
               value={email}
               onChange={onEmailChange}
               $error={emailError}

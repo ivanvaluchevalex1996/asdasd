@@ -79,10 +79,7 @@ const Header = ({ isLoggedIn, onLogin, onLogout }: THeaderProps) => {
           </CustomDropdown>
 
           <AuthButtonWrapper>
-            <Button
-              variant={isLoggedIn ? 'danger' : 'primary'}
-              onClick={isLoggedIn ? onLogout : onLogin}
-            >
+            <Button variant="primary" onClick={isLoggedIn ? onLogout : onLogin}>
               {isLoggedIn
                 ? getTranslation(language, 'signOut')
                 : getTranslation(language, 'signIn')}
