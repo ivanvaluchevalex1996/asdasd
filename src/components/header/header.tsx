@@ -12,6 +12,7 @@ import {
   DropdownButton,
   DropdownMenu,
   DropdownItem,
+  Block,
 } from './theme';
 import chevrondownSvg from '@/assets/svg/chevrondown.svg';
 import addonsSvg from '@/assets/svg/Addons.svg';
@@ -49,41 +50,46 @@ const Header = ({ isLoggedIn, onLogin, onLogout }: THeaderProps) => {
 
   return (
     <StyledBlock>
-      <Logo>
-        <Image src="/logo.svg" alt="yesim" width={102.84} height={30} priority />
-      </Logo>
-      <HeaderControls>
-        <CustomDropdown ref={dropdownRef}>
-          <DropdownButton onClick={() => setIsOpen(!isOpen)}>
-            {languageLabels[language]} <Image src={chevrondownSvg} alt="" width={12} height={12} />
-          </DropdownButton>
-          <DropdownMenu isOpen={isOpen}>
-            <DropdownItem
-              className={language === 'en' ? 'selected' : ''}
-              onClick={() => handleLanguageChange('en')}
-            >
-              <span>ENG</span>
-              <Image src={addonsSvg} alt="" width={12} height={12} />
-            </DropdownItem>
-            <DropdownItem
-              className={language === 'ru' ? 'selected' : ''}
-              onClick={() => handleLanguageChange('ru')}
-            >
-              <span>RU</span>
-              <Image src={addonsSvg} alt="" width={12} height={12} />
-            </DropdownItem>
-          </DropdownMenu>
-        </CustomDropdown>
+      <Block>
+        <Logo>
+          <Image src="/logo.svg" alt="yesim" width={102.84} height={30} priority />
+        </Logo>
+        <HeaderControls>
+          <CustomDropdown ref={dropdownRef}>
+            <DropdownButton onClick={() => setIsOpen(!isOpen)}>
+              {languageLabels[language]}{' '}
+              <Image src={chevrondownSvg} alt="" width={12} height={12} />
+            </DropdownButton>
+            <DropdownMenu isOpen={isOpen}>
+              <DropdownItem
+                className={language === 'en' ? 'selected' : ''}
+                onClick={() => handleLanguageChange('en')}
+              >
+                <span>ENG</span>
+                <Image src={addonsSvg} alt="" width={12} height={12} />
+              </DropdownItem>
+              <DropdownItem
+                className={language === 'ru' ? 'selected' : ''}
+                onClick={() => handleLanguageChange('ru')}
+              >
+                <span>RU</span>
+                <Image src={addonsSvg} alt="" width={12} height={12} />
+              </DropdownItem>
+            </DropdownMenu>
+          </CustomDropdown>
 
-        <AuthButtonWrapper>
-          <Button
-            variant={isLoggedIn ? 'danger' : 'primary'}
-            onClick={isLoggedIn ? onLogout : onLogin}
-          >
-            {isLoggedIn ? getTranslation(language, 'signOut') : getTranslation(language, 'signIn')}
-          </Button>
-        </AuthButtonWrapper>
-      </HeaderControls>
+          <AuthButtonWrapper>
+            <Button
+              variant={isLoggedIn ? 'danger' : 'primary'}
+              onClick={isLoggedIn ? onLogout : onLogin}
+            >
+              {isLoggedIn
+                ? getTranslation(language, 'signOut')
+                : getTranslation(language, 'signIn')}
+            </Button>
+          </AuthButtonWrapper>
+        </HeaderControls>
+      </Block>
     </StyledBlock>
   );
 };

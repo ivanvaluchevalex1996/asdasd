@@ -4,15 +4,26 @@ import { BREAKPOINTS } from '@/constants/BREAKPOINTS';
 
 export const StyledBlock = styled.header`
   display: flex;
-  justify-content: space-between;
-  align-items: center;
+  justify-content: center;
+  // align-items: center;
   background-color: #ffffff;
   padding: 17px 16px;
-  width: 100%;
+  // width: 100%;
+  // flex-shrink:0;
+  // background-color:red;
 
   @media (min-width: ${BREAKPOINTS.tablet}) {
     padding: 10px 16px;
   }
+`;
+
+export const Block = styled.div`
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  // background-color:green;
+  width: 100%;
+  max-width: 1030px;
 `;
 
 export const Logo = styled.div`
@@ -92,12 +103,16 @@ export const DropdownMenu = styled.ul<{ isOpen: boolean }>`
   list-style: none;
   background: ${COLORS.WHITE};
   border-radius: 8px;
-  min-width: 196px;
+  min-width: 120px;
   box-shadow:
     0 -4px 6px -1px rgba(0, 0, 0, 0.1),
     0 4px 6px -1px rgba(0, 0, 0, 0.1);
   display: ${(props) => (props.isOpen ? 'block' : 'none')};
   z-index: 10;
+
+  @media (min-width: ${BREAKPOINTS.tablet}) {
+    min-width: 250px;
+  }
 `;
 
 export const DropdownItem = styled.li`

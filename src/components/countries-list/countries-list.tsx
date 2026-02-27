@@ -10,6 +10,7 @@ import {
   SearchInputWrapper,
   SearchIconWrapper,
   SearchInput,
+  TitleContainer,
   Title,
   LoadingText,
   ErrorMessage,
@@ -92,7 +93,9 @@ const CountriesList = memo(
 
     return (
       <Container>
-        <Title>{getTranslation(language, 'countriesForTravel')}</Title>
+        <TitleContainer>
+          <Title>{getTranslation(language, 'countriesForTravel')}</Title>
+        </TitleContainer>
         <SearchInputWrapper>
           <SearchIconWrapper>
             <SearchIcon />

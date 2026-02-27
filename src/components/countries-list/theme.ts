@@ -58,16 +58,30 @@ export const SearchInput = styled(Input)`
   padding-left: 44px;
 `;
 
+export const TitleContainer = styled.div`
+  width: 100%;
+  // margin: 0 auto;
+  // padding: 0;
+
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+`;
+
 export const Title = styled.h2`
-  margin: 0 0 4px 0;
+  display: inline-block;
+  text-align: center;
+  width: 95%;
+  padding: 20px 0 20px;
   color: ${COLORS.TEXT_DARK};
-  font-size: 20px;
+  font-size: 28px;
   font-weight: 700;
   line-height: 1.3;
 
   @media (min-width: ${BREAKPOINTS.tablet}) {
-    font-size: 24px;
-    margin: 0 0 8px 0;
+    font-size: 28px;
+    width: 70%;
+    // margin: 20px auto 32px;
   }
 `;
 
