@@ -31,15 +31,34 @@ export const CountryCard = styled.div`
   display: flex;
   align-items: center;
   gap: 10px;
-  padding: 10px 12px;
+  padding: 10px 0 12px 0;
   background-color: ${COLORS.WHITE};
   border-radius: 12px;
 
+  &:hover {
+    background-color: ${COLORS.CARD_HOVER};
+    cursor: pointer;
+  }
+
+  @media (max-width: ${BREAKPOINTS.tablet}) {
+    &:hover {
+      margin: 0 -8px;
+      padding: 10px 8px 12px 8px;
+    }
+  }
+
   @media (min-width: ${BREAKPOINTS.tablet}) {
+    background-color: ${COLORS.CARD_BACKGROUND};
     gap: 12px;
+    padding: 10px 16px;
+
+    &:hover {
+      background-color: ${COLORS.CARD_HOVER};
+    }
   }
 `;
 
+// background-color: ${COLORS.CARD_HOVER};
 export const CountryFlag = styled.div`
   flex-shrink: 0;
   width: 40px;
@@ -47,22 +66,6 @@ export const CountryFlag = styled.div`
   display: flex;
   align-items: center;
   justify-content: center;
-
-  img {
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
-    border-radius: 4px;
-  }
-
-  @media (min-width: ${BREAKPOINTS.tablet}) {
-    width: 48px;
-    height: 36px;
-
-    img {
-      border-radius: 6px;
-    }
-  }
 `;
 
 export const CountryName = styled.div`

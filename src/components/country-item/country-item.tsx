@@ -24,7 +24,7 @@ const CountryItem = memo(({ country }: TCountryItemProps) => {
             width={40}
             height={30}
             unoptimized
-            style={{ width: '100%', height: '100%', objectFit: 'cover', borderRadius: '4px' }}
+            style={{ width: '80%', height: '100%', objectFit: 'cover', borderRadius: '40px' }}
             onError={(e) => {
               e.currentTarget.style.display = 'none';
             }}

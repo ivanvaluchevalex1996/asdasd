@@ -15,7 +15,13 @@ export const Container = styled.div`
 `;
 
 export const TextStyled = styled.p`
-  margin-left: 0px;
+  font-weight: 600;
+  margin-bottom: 12px;
+
+  @media (min-width: ${BREAKPOINTS.tablet}) {
+    font-size: 24px;
+    margin-bottom: 24px;
+  }
 `;
 
 export const ContentContainer = styled.div`
@@ -25,6 +31,14 @@ export const ContentContainer = styled.div`
 
   @media (max-width: ${BREAKPOINTS.tablet}) {
     padding: 16px;
+  }
+`;
+
+export const ToggleButtonWrapper = styled.div`
+  margin-top: 24px;
+
+  @media (max-width: ${BREAKPOINTS.tablet}) {
+    margin-top: 16px;
   }
 `;
 
@@ -80,8 +94,8 @@ export const Title = styled.h2`
 
   @media (min-width: ${BREAKPOINTS.tablet}) {
     font-size: 28px;
+    //  margin: 20px auto 32px;
     width: 70%;
-    // margin: 20px auto 32px;
   }
 `;
 

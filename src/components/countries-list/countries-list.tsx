@@ -16,6 +16,7 @@ import {
   ErrorMessage,
   ContentContainer,
   TextStyled,
+  ToggleButtonWrapper,
 } from './theme';
 import { SearchIcon } from './search-icon';
 
@@ -109,22 +110,26 @@ const CountriesList = memo(
         </SearchInputWrapper>
 
         <ContentContainer>
-          <TextStyled>Популярные страны</TextStyled>
+          <TextStyled>
+            {isShowingAll
+              ? getTranslation(language, 'allCountries')
+              : getTranslation(language, 'popularCountries')}
+          </TextStyled>
           <CountriesGrid>
             {displayedCountries.map((country) => (
-              // <CountryItem key={country.id} country={country} />
               <CountryItem key={country.id} country={country} />
             ))}
           </CountriesGrid>
+          {showToggleButton && (
+            <ToggleButtonWrapper>
+              <Button fullWidth centered onClick={onShowMore}>
+                {isShowingAll
+                  ? getTranslation(language, 'showPopularCountries')
+                  : getTranslation(language, 'showAllCountries')}
+              </Button>
+            </ToggleButtonWrapper>
+          )}
         </ContentContainer>
-
-        {showToggleButton && (
-          <Button fullWidth centered onClick={onShowMore}>
-            {isShowingAll
-              ? getTranslation(language, 'showPopularCountries')
-              : getTranslation(language, 'showAllCountries')}
-          </Button>
-        )}
       </Container>
     );
   }

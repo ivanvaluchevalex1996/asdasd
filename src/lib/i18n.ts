@@ -22,6 +22,8 @@ export const translations = {
     invalidEmail: 'Please enter a valid email',
     howItWorks: 'How it works',
     sliderCardTitle: 'Very long title',
+    allCountries: 'All countries',
+    popularCountries: 'Popular countries',
   },
   ru: {
     signIn: 'Войти',
@@ -44,6 +46,8 @@ export const translations = {
     invalidEmail: 'Пожалуйста, введите корректный email',
     howItWorks: 'Как это работает',
     sliderCardTitle: 'Очень длинный заголовок',
+    allCountries: 'Все страны',
+    popularCountries: 'Популярные страны',
   },
 };
 
