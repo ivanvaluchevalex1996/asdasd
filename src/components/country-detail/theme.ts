@@ -30,32 +30,41 @@ export const SectionTitle = styled.h2`
 export const CountryCard = styled.div`
   display: flex;
   align-items: center;
-  gap: 10px;
-  padding: 10px 0 12px 0;
-  background-color: ${COLORS.WHITE};
+  /* gap: 10px; */
+  /* padding: 10px 0 12px 0; */
+  /* background-color: ${COLORS.WHITE}; */
+  /* background-color: red; */
   border-radius: 12px;
+  /* background-color: green; */
 
-  &:hover {
-    background-color: ${COLORS.CARD_HOVER};
-    cursor: pointer;
+  @media (min-width: ${BREAKPOINTS.tablet}) {
+    padding: 10px 16px;
+    background-color: ${COLORS.CARD_BACKGROUND};
+    &:hover {
+      background-color: ${COLORS.CARD_HOVER};
+      cursor: pointer;
+    }
   }
 
   @media (max-width: ${BREAKPOINTS.tablet}) {
+    padding: 13px 16px 13px 0;
+    /* background-color: red; */
+  }
+  /* @media (max-width: ${BREAKPOINTS.tablet}) {
     &:hover {
       margin: 0 -8px;
       padding: 10px 8px 12px 8px;
     }
-  }
+  } */
 
-  @media (min-width: ${BREAKPOINTS.tablet}) {
-    background-color: ${COLORS.CARD_BACKGROUND};
+  /* @media (min-width: ${BREAKPOINTS.tablet}) {
     gap: 12px;
     padding: 10px 16px;
 
     &:hover {
       background-color: ${COLORS.CARD_HOVER};
     }
-  }
+  } */
 `;
 
 // background-color: ${COLORS.CARD_HOVER};

@@ -3,12 +3,8 @@ import { COLORS } from '@/constants/COLORS';
 import { BREAKPOINTS } from '@/constants/BREAKPOINTS';
 
 export const CountryFlag = styled.div`
-  flex-shrink: 0;
   width: 40px;
   height: 30px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
 
   img {
     width: 100%;
